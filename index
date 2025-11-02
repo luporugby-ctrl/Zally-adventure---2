@@ -73,7 +73,7 @@
             bottom: 30px; /* In piedi sulla nave */
             left: 18px; /* Centrato sulla nave */
             z-index: 12;
-            background-image: url('zally.png'); /* <<< ZALLY.PNG VIENE CARICATO QUI >>> */
+            background-image: url('zally-the-pirate.png'); /* <<< ZALLY CARICATO QUI >>> */
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -500,4 +500,5 @@
     </script>
 </body>
 </html>
+
 
