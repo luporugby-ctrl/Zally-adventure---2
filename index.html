@@ -14,29 +14,145 @@
     <style>
         body {
             font-family: 'Press Start 2P', cursive;
-            background-color: #5c94fc; /* Sky color */
-            overflow: hidden; 
+            /* CIELO AZZURRO: Sfondo a gradiente */
+            background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 100%);
+            overflow: hidden;
+            color: #333;
         }
-        /* Testo leggibile per i modali e la sottotitolo */
         .font-readable {
             font-family: 'Inter', sans-serif;
         }
 
+        /* --- NUOVI ELEMENTI DEL CIELO --- */
+        .sky-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .sun {
+            position: absolute;
+            top: 5%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #FFD700, 0 0 50px #FFD700;
+        }
+        .cloud {
+            position: absolute;
+            width: 200px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 30px;
+            opacity: 0.8;
+            animation: drift 60s linear infinite;
+        }
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+        .cloud::before {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 40px;
+        }
+        .cloud::after {
+            width: 120px;
+            height: 120px;
+            top: -60px;
+            right: 30px;
+        }
+        .cloud-1 { top: 10%; left: -200px; animation-duration: 70s; }
+        .cloud-2 { top: 20%; left: -300px; animation-duration: 50s; animation-delay: -10s; }
+        .cloud-3 { top: 15%; left: -100px; animation-duration: 80s; animation-delay: -20s; }
+        
+        @keyframes drift {
+            from { transform: translateX(-300px); }
+            to { transform: translateX(2000px); }
+        }
+
+        .seagull {
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            animation: fly 15s linear infinite;
+        }
+        .seagull-wing {
+            position: absolute;
+            width: 50px;
+            height: 10px;
+            background: #fff;
+            border: 2px solid #555;
+            border-radius: 20px / 10px;
+        }
+        .seagull-wing-left {
+            transform-origin: right;
+            animation: flap-left 0.5s infinite alternate;
+        }
+        .seagull-wing-right {
+            left: 50px;
+            transform-origin: left;
+            animation: flap-right 0.5s infinite alternate;
+        }
+        .seagull-1 { top: 12%; left: -100px; transform: scale(0.6); animation-delay: -5s; }
+        .seagull-2 { top: 18%; left: -100px; transform: scale(0.8); animation-delay: 0s; }
+
+        @keyframes fly {
+            from { transform: translateX(-100px) scale(0.8); }
+            to { transform: translateX(2500px) scale(0.8); }
+        }
+        @keyframes flap-left {
+            from { transform: rotate(10deg); }
+            to { transform: rotate(-20deg); }
+        }
+        @keyframes flap-right {
+            from { transform: rotate(-10deg); }
+            to { transform: rotate(20deg); }
+        }
+
+        /* --- NUOVO HEADER INTEGRATO --- */
+        .game-header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            text-align: center;
+        }
+        .game-header h1 {
+            font-size: 1.5rem; /* 24px */
+            color: white;
+            text-shadow: 3px 3px 0px #000000;
+        }
+        .game-header p {
+            font-size: 1rem; /* 16px */
+            color: #FFFFE0; /* Giallo pallido */
+            text-shadow: 2px 2px 0px #000000;
+            margin-top: 5px;
+        }
+        
         .game-world {
-            width: 2400px; /* Mondo più grande per 4 isole */
+            width: 2400px;
             height: 100vh;
             position: relative;
         }
 
-        /* --- STILE DEL MARE --- */
+        /* --- STILE DEL MARE (come prima) --- */
         .sea-block {
-            background-color: #1e40af; /* Deep blue sea */
+            background-color: #1e40af;
             width: 64px;
             height: 64px;
             position: relative;
             overflow: hidden;
         }
-        /* Onde stilizzate */
         .sea-block::before {
             content: '';
             position: absolute;
@@ -44,24 +160,22 @@
             left: 0;
             width: 128px;
             height: 20px;
-            background-color: #3b82f6; /* Lighter blue wave */
+            background-color: #3b82f6;
             border-radius: 50%;
             animation: wave 3s infinite linear;
         }
-        .sea-block:nth-child(2n)::before {
-            animation-delay: -1.5s;
-        }
+        .sea-block:nth-child(2n)::before { animation-delay: -1.5s; }
         @keyframes wave {
             0% { transform: translateX(-64px); }
             100% { transform: translateX(0px); }
         }
 
-        /* --- STILE DI ZALLY E DELLA SUA NAVE --- */
+        /* --- ZALLY E NAVE (come prima) --- */
         #zally-container {
-            width: 100px; /* Larghezza del container */
-            height: 100px; /* Altezza del container */
+            width: 100px;
+            height: 100px;
             position: absolute;
-            bottom: 60px; /* Appoggiato sul mare */
+            bottom: 60px;
             left: 80px;
             z-index: 10;
             transition: left 0.1s linear;
@@ -70,21 +184,20 @@
             width: 64px; 
             height: 64px;
             position: absolute;
-            bottom: 30px; /* In piedi sulla nave */
-            left: 18px; /* Centrato sulla nave */
+            bottom: 30px;
+            left: 18px;
             z-index: 12;
-            background-image: url('zally-the-pirate.png'); /* <<< ZALLY CARICATO QUI >>> */
+            background-image: url('zally-the-pirate.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            /* Flip orizzontale */
             transform-origin: center;
             transition: transform 0.1s linear;
         }
         #ship-hull {
             width: 100px;
             height: 40px;
-            background-color: #8B4513; /* Marrone scafo */
+            background-color: #8B4513;
             border: 4px solid black;
             border-bottom-left-radius: 20px 10px;
             border-bottom-right-radius: 20px 10px;
@@ -95,50 +208,45 @@
             left: 0;
             z-index: 11;
         }
-        /* Albero della nave */
         #ship-hull::before {
             content: '';
             position: absolute;
             bottom: 40px;
-            left: 46px; /* Centrato */
+            left: 46px;
             width: 8px;
             height: 50px;
-            background-color: #663300; /* Marrone scuro */
+            background-color: #663300;
             border: 4px solid black;
             z-index: 9;
         }
 
-        /* --- STILE DELLE ISOLE --- */
+        /* --- STILE ISOLE MIGLIORATE + PALME --- */
         .island {
-            width: 160px;
-            height: 80px;
+            width: 180px; /* Più larghe */
+            height: 90px; /* Più alte */
             position: absolute;
-            bottom: 64px; /* Sul mare */
+            bottom: 64px;
             cursor: pointer;
             transition: transform 0.1s ease;
             z-index: 5;
         }
-        .island:hover {
-            transform: scale(1.03);
-        }
-        /* Terra sotto */
+        .island:hover { transform: scale(1.03); }
         .island-base {
             width: 100%;
             height: 100%;
-            background-color: #e27525; /* Terra */
+            background: linear-gradient(to bottom, #CD853F 0%, #A0522D 100%); /* Gradiente terra */
             border: 4px solid black;
-            border-radius: 30px 30px 10px 10px;
+            border-radius: 50% / 40%; /* Forma più organica */
         }
-        /* Erba sopra */
         .island-top {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background-color: #2dbd2d; /* Verde erba */
+            left: 5px;
+            right: 5px;
+            height: 50px;
+            background: #2dbd2d;
             border: 4px solid black;
-            border-radius: 30px 30px 0 0;
+            border-radius: 50% / 60%; /* Forma erba organica */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,17 +254,65 @@
             text-align: center;
             line-height: 1.2;
             font-size: 12px;
+            color: white;
+            text-shadow: 2px 2px 0px black;
         }
-        /* Isola del tesoro speciale */
-        #treasure-island .island-top {
-            background-color: #fde047; /* Dorata */
+        
+        .palm-tree {
+            position: absolute;
+            bottom: 35px; /* Sull'erba */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
         }
-        #treasure-island .island-base {
-            background-color: #f59e0b; /* Dorata scura */
+        .palm-trunk {
+            width: 10px;
+            height: 60px;
+            background: #8B4513;
+            border: 3px solid black;
+            border-radius: 5px;
+        }
+        .palm-leaf {
+            position: absolute;
+            top: -15px;
+            left: -20px;
+            width: 50px;
+            height: 20px;
+            background: #006400; /* Verde scuro */
+            border: 3px solid black;
+            border-radius: 50% / 100%;
+        }
+        .palm-leaf-1 { transform: rotate(-30deg) translate(-10px, -5px); }
+        .palm-leaf-2 { transform: rotate(30deg) translate(10px, -5px); }
+        .palm-leaf-3 { transform: rotate(-60deg) translate(-15px, 5px); }
+        .palm-leaf-4 { transform: rotate(60deg) translate(15px, 5px); }
+        
+        /* --- ISOLA DEL TESORO (SENZA PALMA, CON FORZIERE) --- */
+        #treasure-chest-on-island {
+            position: absolute;
+            width: 60px;
+            height: 45px;
+            background: #8B4513;
+            border: 3px solid black;
+            border-radius: 5px 5px 0 0;
+            bottom: 35px; /* Sull'erba */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+        }
+        #treasure-chest-on-island::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -3px;
+            width: 60px;
+            height: 15px;
+            background: #8B4513;
+            border: 3px solid black;
+            border-radius: 5px 5px 0 0;
         }
 
-
-        /* --- Stili Modali (dall'ispirazione) --- */
+        /* --- Stili Modali --- */
         .modal-pixel {
             font-family: 'Inter', sans-serif; 
             border: 4px solid black;
@@ -180,122 +336,167 @@
              box-shadow: 2px 2px 0px black;
         }
 
-        /* --- NUOVO: Stile Tesoro Scintillante --- */
-        #treasure-chest {
-            width: 120px;
+        /* --- NUOVO: Forziere del Tesoro ANIMATO nel Modale --- */
+        #treasure-chest-modal {
+            width: 150px;
+            height: 110px;
+            position: relative;
+            margin: 20px auto 40px;
+            perspective: 300px;
+        }
+        #treasure-chest-base {
+            width: 150px;
             height: 90px;
             background: #8B4513;
             border: 4px solid black;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            margin: 20px auto 40px;
-        }
-        /* Coperchio */
-        #treasure-chest::before {
-            content: '';
+            border-radius: 5px;
             position: absolute;
-            top: -20px;
-            left: -4px;
-            width: 120px;
-            height: 30px;
+            bottom: 0;
+        }
+        #treasure-chest-lid {
+            width: 150px;
+            height: 40px;
             background: #8B4513;
             border: 4px solid black;
             border-radius: 10px 10px 0 0;
-        }
-        /* Chiusura */
-        #treasure-chest::after {
-            content: '';
             position: absolute;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 10px;
-            background: #fde047;
-            border: 4px solid black;
+            bottom: 86px; /* Appoggiato sulla base */
+            left: -4px;
+            transform-origin: bottom center;
+            transition: transform 0.5s ease-in-out;
+            z-index: 10;
         }
+        /* Stato "Aperto" del coperchio */
+        #treasure-chest-modal.open #treasure-chest-lid {
+            transform: rotateX(-140deg);
+        }
+
         .coin-pile {
             position: absolute;
             bottom: 0;
-            left: 10px;
-            width: 100px;
-            height: 50px;
+            left: 20px;
+            width: 110px;
+            height: 80px;
+            z-index: -1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s 0.3s, transform 0.5s 0.3s ease-out;
         }
+        /* Stato "Visibile" delle monete */
+        #treasure-chest-modal.open .coin-pile {
+            opacity: 1;
+            transform: translateY(-20px); /* Esplodono in alto */
+        }
+
         .coin {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: #fde047;
             border: 2px solid #f59e0b;
             border-radius: 50%;
             animation: shimmer 1.5s infinite;
+            box-shadow: 0 0 10px #fde047;
         }
         @keyframes shimmer {
-            0%, 100% { opacity: 0.7; box-shadow: 0 0 5px #fde047; }
-            50% { opacity: 1; box-shadow: 0 0 15px #fef08a; }
+            0%, 100% { opacity: 0.7; box-shadow: 0 0 10px #fde047; }
+            50% { opacity: 1; box-shadow: 0 0 20px #fef08a; }
         }
-        .coin:nth-child(1) { bottom: 0; left: 20px; animation-delay: 0s; }
-        .coin:nth-child(2) { bottom: 10px; left: 35px; animation-delay: -0.5s; }
-        .coin:nth-child(3) { bottom: 0; left: 50px; animation-delay: -1s; }
-        .coin:nth-child(4) { bottom: 5px; left: 10px; animation-delay: -0.2s; }
-        .coin:nth-child(5) { bottom: 12px; left: 25px; animation-delay: -0.7s; }
-        .coin:nth-child(6) { bottom: 5px; left: 60px; animation-delay: -1.2s; }
+        /* Riempiamo il baule! */
+        .coin:nth-child(1) { bottom: 0; left: 30px; animation-delay: 0s; }
+        .coin:nth-child(2) { bottom: 10px; left: 45px; animation-delay: -0.5s; }
+        .coin:nth-child(3) { bottom: 0; left: 60px; animation-delay: -1s; }
+        .coin:nth-child(4) { bottom: 5px; left: 15px; animation-delay: -0.2s; }
+        .coin:nth-child(5) { bottom: 12px; left: 30px; animation-delay: -0.7s; }
+        .coin:nth-child(6) { bottom: 5px; left: 70px; animation-delay: -1.2s; }
+        .coin:nth-child(7) { bottom: 20px; left: 40px; animation-delay: -0.3s; }
+        .coin:nth-child(8) { bottom: 15px; left: 55px; animation-delay: -0.8s; }
+        .coin:nth-child(9) { bottom: 25px; left: 25px; animation-delay: -1.3s; }
 
     </style>
 </head>
 <body class="m-0 p-0">
 
-    <!-- Barra in alto con i nuovi titoli -->
-    <div class="fixed top-0 left-0 w-full bg-black text-white p-4 z-50 text-center">
-        <div class="text-sm md:text-base">gDrive Treasure Hunt</div>
-        <div class="font-readable text-xs md:text-sm text-gray-300 italic">"Stop *searching*. Start *finding*."</div>
+    <!-- NUOVO: Cielo con Sole, Nuvole e Gabbiani -->
+    <div class="sky-elements">
+        <div class="sun"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        
+        <div class="seagull seagull-1">
+            <div class="seagull-wing seagull-wing-left"></div>
+            <div class="seagull-wing seagull-wing-right"></div>
+        </div>
+        <div class="seagull seagull-2">
+            <div class="seagull-wing seagull-wing-left"></div>
+            <div class="seagull-wing seagull-wing-right"></div>
+        </div>
     </div>
+    
+    <!-- NUOVO: Header Integrato nel Cielo -->
+    <header class="game-header">
+        <h1>gDrive Treasure Hunt</h1>
+        <p class="font-readable italic">"Stop *searching*. Start *finding*."</p>
+    </header>
 
-    <!-- Il mondo di gioco, ora con il mare -->
+    <!-- Il mondo di gioco -->
     <div class="game-world" id="game-world">
         
-        <!-- Zally sulla sua Nave -->
         <div id="zally-container" title="This is Zally!">
             <div id="zally-image"></div>
             <div id="ship-hull"></div>
         </div>
 
-        <!-- Isola 1 -->
+        <!-- Isola 1 (con Palma) -->
         <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="island-base"></div>
-            <div class="island-top">
-                Island 1: FIND
+            <div class="island-top">Island 1: FIND</div>
+            <div class="palm-tree">
+                <div class="palm-trunk"></div>
+                <div class="palm-leaf palm-leaf-1"></div>
+                <div class="palm-leaf palm-leaf-2"></div>
+                <div class="palm-leaf palm-leaf-3"></div>
+                <div class="palm-leaf palm-leaf-4"></div>
             </div>
         </div>
 
-        <!-- Isola 2 -->
+        <!-- Isola 2 (con Palma) -->
         <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="island-base"></div>
-            <div class="island-top">
-                Island 2: EXTRACT
+            <div class="island-top">Island 2: EXTRACT</div>
+            <div class="palm-tree">
+                <div class="palm-trunk"></div>
+                <div class="palm-leaf palm-leaf-1"></div>
+                <div class="palm-leaf palm-leaf-2"></div>
+                <div class="palm-leaf palm-leaf-3"></div>
+                <div class="palm-leaf palm-leaf-4"></div>
             </div>
         </div>
         
-        <!-- Isola 3 -->
+        <!-- Isola 3 (con Palma) -->
         <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="island-base"></div>
-            <div class="island-top">
-                Island 3: SYNTHESIZE
+            <div class="island-top">Island 3: SYNTHESIZE</div>
+            <div class="palm-tree">
+                <div class="palm-trunk"></div>
+                <div class="palm-leaf palm-leaf-1"></div>
+                <div class="palm-leaf palm-leaf-2"></div>
+                <div class="palm-leaf palm-leaf-3"></div>
+                <div class="palm-leaf palm-leaf-4"></div>
             </div>
         </div>
         
-        <!-- Isola 4 (Il Tesoro) -->
+        <!-- Isola 4 (Il Tesoro, con Forziere) -->
         <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div class="island-base"></div>
-            <div class="island-top">
-                💰<br>TREASURE ISLAND
-            </div>
+            <div class="island-top">TREASURE ISLAND</div>
+            <div id="treasure-chest-on-island"></div>
         </div>
 
-        <!-- Il Mare (ex "Terra") -->
+        <!-- Il Mare -->
         <div class="absolute bottom-0 left-0 flex flex-row z-0">
             <script>
-                // Genera 38 blocchi di mare per coprire 2400px
                 for (let i = 0; i < 38; i++) {
                     document.write('<div class="sea-block"></div>');
                 }
@@ -303,7 +504,7 @@
         </div>
     </div>
 
-    <!-- Modale per le Sfide (Nascosto) -->
+    <!-- Modale Sfide -->
     <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
     <div id="challenge-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div id="modal-title" class="p-4 text-xl modal-header-pixel"></div>
@@ -328,27 +529,27 @@
         </div>
     </div>
 
-    <!-- NUOVO: Modale per il Tesoro (Nascosto) -->
+    <!-- Modale Tesoro (con Baule Animato) -->
     <div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
-        <div class="p-4 text-xl modal-header-pixel">TREASURE UNLOCKED!</div>
+        <div class="p-4 text-xl modal-header-pixel text-center">TREASURE UNLOCKED!</div>
         <div class="p-6 text-gray-800 space-y-4 font-readable text-center">
             
             <h2 class="text-2xl font-bold text-amber-900">Zally found the treasure!</h2>
             <p class="text-base">Thanks to your powerful prompts, you've mastered the gDrive Hunt!</p>
             
-            <!-- Baule del Tesoro e Monete Scintillanti -->
-            <div id="treasure-chest">
-                <div class="coin-pile">
-                    <div class="coin"></div>
-                    <div class="coin"></div>
-                    <div class="coin"></div>
-                    <div class="coin"></div>
-                    <div class="coin"></div>
-                    <div class="coin"></div>
+            <!-- Baule del Tesoro Animato -->
+            <div id="treasure-chest-modal">
+                <div id="treasure-chest-lid" class="lid"></div>
+                <div id="treasure-chest-base" class="base">
+                    <div class="coin-pile">
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                    </div>
                 </div>
             </div>
 
-            <h3 class="text-xl font-bold pt-4">Your New Superpowers:</h3>
+            <h3 class="text-xl font-bold pt-12">Your New Superpowers:</h3>
             <ul class="mt-2 space-y-2 text-lg text-left inline-block">
                 <li>🧠 Find <strong>concepts</strong>, not just file names.</li>
                 <li>💡 <strong>Summarize</strong> files on the fly.</li>
@@ -393,7 +594,6 @@
                 goodPrompt: "'Summarize key updates and next deadlines from the Supplier Returns initiative'", 
                 takeaway: "Gemini can read *multiple* documents at once to give you a single, synthesized answer."
             }
-            // L'ID 4 è il tesoro, non ha bisogno di dati qui.
         ];
 
         // --- Logica dei Modali ---
@@ -403,8 +603,8 @@
         const treasureModal = document.getElementById('treasure-modal');
         const closeTreasureModalBtn = document.getElementById('close-treasure-modal-btn');
         const challengeTriggers = document.querySelectorAll('.challenge-trigger');
+        const treasureChestModal = document.getElementById('treasure-chest-modal');
         
-        // Campi del modale
         const modalTitle = document.getElementById('modal-title');
         const modalConcept = document.getElementById('modal-concept');
         const modalObjective = document.getElementById('modal-objective');
@@ -430,6 +630,10 @@
             isModalOpen = true;
             modalOverlay.classList.remove('hidden');
             treasureModal.classList.remove('hidden');
+            // Trigger animazione baule
+            setTimeout(() => {
+                treasureChestModal.classList.add('open');
+            }, 100); // Leggero ritardo per far apparire il modale
         }
 
         function closeModal() {
@@ -437,6 +641,8 @@
             modalOverlay.classList.add('hidden');
             challengeModal.classList.add('hidden');
             treasureModal.classList.add('hidden');
+            // Resetta animazione baule
+            treasureChestModal.classList.remove('open');
         }
 
         challengeTriggers.forEach(trigger => {
@@ -445,10 +651,8 @@
                 const challengeId = parseInt(trigger.dataset.challengeId);
                 
                 if (challengeId === 4) {
-                    // È l'isola del tesoro!
                     openTreasureModal();
                 } else {
-                    // È un'isola di sfida
                     const challengeData = challenges.find(c => c.id === challengeId);
                     if (challengeData) {
                         openChallengeModal(challengeData);
@@ -461,10 +665,10 @@
         closeTreasureModalBtn.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', closeModal);
 
-        // --- Logica di Movimento (dall'ispirazione) ---
+        // --- Logica di Movimento ---
         const gameWorld = document.getElementById('game-world');
         const zallyContainer = document.getElementById('zally-container');
-        const zallyImage = document.getElementById('zally-image'); // Immagine di Zally
+        const zallyImage = document.getElementById('zally-image');
         let zallyPositionX = 80;
         const moveSpeed = 15;
         const worldWidth = 2400;
@@ -477,21 +681,19 @@
 
             if (e.key === 'ArrowRight') {
                 zallyPositionX = Math.min(zallyPositionX + moveSpeed, worldWidth - zallyContainer.offsetWidth - 10);
-                zallyImage.style.transform = 'scaleX(1)'; // Guarda a destra
+                zallyImage.style.transform = 'scaleX(1)';
             } else if (e.key === 'ArrowLeft') {
                 zallyPositionX = Math.max(zallyPositionX - moveSpeed, 0);
-                zallyImage.style.transform = 'scaleX(-1)'; // Guarda a sinistra (flippato)
+                zallyImage.style.transform = 'scaleX(-1)';
             }
 
             zallyContainer.style.left = zallyPositionX + 'px';
 
-            // Logica della "Camera" per seguire Zally
             let cameraLookAhead = screenWidth / 3;
             let targetScrollLeft = zallyPositionX - cameraLookAhead;
             targetScrollLeft = Math.max(0, targetScrollLeft);
             targetScrollLeft = Math.min(targetScrollLeft, worldWidth - screenWidth);
             
-            // Animazione di scrolling fluida
             window.scrollTo({
                 left: targetScrollLeft,
                 behavior: 'smooth'
@@ -500,3 +702,4 @@
     </script>
 </body>
 </html>
+
