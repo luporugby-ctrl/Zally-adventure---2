@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gDrive Treasure Hunt</title>
-    <!-- Import Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Import Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
@@ -115,7 +117,7 @@
             to { transform: rotate(20deg); }
         }
 
-        /* --- HEADER INTEGRATO NEL CIELO (colori grigio chiaro) --- */
+        /* --- HEADER INTEGRATO (GRIGIO CHIARO) --- */
         .game-header {
             position: fixed;
             top: 20px;
@@ -167,10 +169,10 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- ZALLY E NAVE (ora GALEONE PIRATA) --- */
+        /* --- ZALLY E GALEONE PIRATA --- */
         #zally-container {
-            width: 150px; /* Larghezza maggiore per la nave */
-            height: 150px; /* Altezza maggiore */
+            width: 150px; 
+            height: 150px; 
             position: absolute;
             bottom: 60px;
             left: 80px;
@@ -194,16 +196,15 @@
         #ship-hull {
             width: 150px;
             height: 60px;
-            background: linear-gradient(to right, #8B4513, #A0522D); /* Sfumatura per il legno */
+            background: linear-gradient(to right, #8B4513, #A0522D); 
             border: 4px solid black;
-            border-radius: 10px 10px 30px 30px / 5px 5px 20px 20px; /* Forma più da nave */
+            border-radius: 10px 10px 30px 30px / 5px 5px 20px 20px; 
             position: absolute;
             bottom: 0;
             left: 0;
             z-index: 11;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Profondità */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
         }
-        /* Dettagli della nave */
         #ship-hull::before { /* Prua */
             content: '';
             position: absolute;
@@ -228,10 +229,9 @@
             border-radius: 40px 5px 0 0;
             transform: skewY(20deg);
         }
-        /* Albero maestro */
         .mast {
             position: absolute;
-            bottom: 60px; /* Dalla base della nave */
+            bottom: 60px; 
             left: 70px;
             width: 8px;
             height: 80px;
@@ -241,14 +241,14 @@
         }
         .sail {
             position: absolute;
-            top: 10px; /* Dalla cima dell'albero */
+            top: 10px; 
             left: -30px;
             width: 70px;
             height: 50px;
-            background: #f5f5dc; /* Colore vela */
+            background: #f5f5dc; 
             border: 3px solid black;
             border-radius: 0 0 10px 10px;
-            transform: skewX(-10deg); /* Forma della vela */
+            transform: skewX(-10deg); 
         }
         .pirate-flag {
             position: absolute;
@@ -261,14 +261,13 @@
             z-index: 15;
         }
         .pirate-flag::before {
-            content: '💀'; /* Teschio */
+            content: '💀'; 
             position: absolute;
             top: -2px;
             left: 0px;
             font-size: 20px;
             color: white;
         }
-
 
         /* --- STILE ISOLE MIGLIORATE --- */
         .island {
@@ -308,24 +307,29 @@
             text-shadow: 2px 2px 0px black;
         }
         
+        /* --- PALME - CODICE CORRETTO --- */
         .palm-tree {
             position: absolute;
-            bottom: 120px; /* PALME PIÙ ALTE */
+            bottom: 120px; /* Posizione base dell'albero */
             left: 50%;
             transform: translateX(-50%);
             z-index: 6;
         }
         .palm-trunk {
+            /* Integro il tuo codice, Capitano! */
+            position: relative; /* Chiave per attaccare le foglie */
+            transform: translateY(-30px); /* Alza l'albero come richiesto */
             width: 10px;
-            height: 60px;
-            background: linear-gradient(to right, #8B4513, #654321); /* Tronco più realistico */
+            height: 80px; /* La tua altezza */
+            background: linear-gradient(to right, #8B4513, #654321);
             border: 3px solid black;
             border-radius: 5px;
         }
         .palm-leaf {
+            /* Ora le foglie sono attaccate alla cima del tronco */
             position: absolute;
-            top: -15px;
-            left: -20px;
+            top: 0; /* Cima del .palm-trunk */
+            left: -20px; /* Centra le foglie sul tronco */
             width: 50px;
             height: 20px;
             background: #006400;
@@ -345,7 +349,7 @@
             background: #8B4513;
             border: 3px solid black;
             border-radius: 5px;
-            bottom: 80px; /* Più in alto sull'isola */
+            bottom: 80px; 
             left: 50%;
             transform: translateX(-50%);
             z-index: 6;
@@ -372,7 +376,6 @@
             top: 15px;
             left: 0;
         }
-        /* Serratura */
         #treasure-chest-on-island .lock {
             position: absolute;
             width: 15px;
@@ -385,7 +388,6 @@
             transform: translateX(-50%);
             z-index: 7;
         }
-
 
         /* --- Stili Modali --- */
         .modal-pixel {
@@ -418,7 +420,7 @@
             position: relative;
             margin: 20px auto 40px;
             perspective: 300px;
-            z-index: 1; /* Assicura che le monete siano sopra il fondo */
+            z-index: 1; 
         }
         #treasure-chest-modal-base {
             width: 150px;
@@ -444,7 +446,7 @@
             z-index: 10;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-        #treasure-chest-modal-lid::before { /* Dettagli metallici sul coperchio */
+        #treasure-chest-modal-lid::before { 
             content: '';
             position: absolute;
             width: 100%;
@@ -455,7 +457,7 @@
             top: 15px;
             left: 0;
         }
-        #treasure-chest-modal-lid::after { /* Serratura sul coperchio */
+        #treasure-chest-modal-lid::after { 
             content: '';
             position: absolute;
             width: 15px;
@@ -469,26 +471,24 @@
             z-index: 11;
         }
 
-        /* Stato "Aperto" del coperchio */
         #treasure-modal.open #treasure-chest-modal-lid {
             transform: rotateX(-140deg);
         }
 
         .coin-pile {
             position: absolute;
-            bottom: 0; /* Partono dal fondo del baule */
+            bottom: 0; 
             left: 0;
             width: 100%;
             height: 80px;
-            overflow: hidden; /* Per contenere le monete */
+            overflow: hidden; 
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.3s 0.3s, transform 0.5s 0.3s ease-out;
         }
-        /* Stato "Visibile" delle monete */
         #treasure-modal.open .coin-pile {
             opacity: 1;
-            transform: translateY(0); /* Le monete non "esplodono", ma riempiono */
+            transform: translateY(0); 
         }
 
         .coin {
@@ -505,7 +505,6 @@
             0%, 100% { opacity: 0.7; box-shadow: 0 0 10px #fde047; }
             50% { opacity: 1; box-shadow: 0 0 20px #fef08a; }
         }
-        /* Distribuzione più "piena" delle monete */
         .coin:nth-child(1) { bottom: 5px; left: 10px; animation-delay: 0s; }
         .coin:nth-child(2) { bottom: 15px; left: 30px; animation-delay: -0.5s; }
         .coin:nth-child(3) { bottom: 8px; left: 55px; animation-delay: -1s; }
@@ -524,7 +523,8 @@
 </head>
 <body class="m-0 p-0">
 
-    <!-- Cielo con Sole, Nuvole e Gabbiani --><div class="sky-elements">
+    
+    <div class="sky-elements">
         <div class="sun"></div>
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
@@ -540,12 +540,14 @@
         </div>
     </div>
     
-    <!-- Header Integrato nel Cielo (colori grigio chiaro) --><header class="game-header">
+    
+    <header class="game-header">
         <h1>gDrive Treasure Hunt</h1>
         <p class="font-readable italic">"Stop *searching*. Start *finding*."</p>
     </header>
 
-    <!-- Il mondo di gioco --><div class="game-world" id="game-world">
+    
+    <div class="game-world" id="game-world">
         
         <div id="zally-container" title="This is Zally!">
             <div id="zally-image"></div>
@@ -556,7 +558,8 @@
             </div>
         </div>
 
-        <!-- Isola 1 (con Palma alzata) --><div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
+        
+        <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="island-base"></div>
             <div class="island-top">Island 1: FIND</div>
             <div class="palm-tree">
@@ -568,7 +571,8 @@
             </div>
         </div>
 
-        <!-- Isola 2 (con Palma alzata) --><div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
+        
+        <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="island-base"></div>
             <div class="island-top">Island 2: EXTRACT</div>
             <div class="palm-tree">
@@ -580,7 +584,8 @@
             </div>
         </div>
         
-        <!-- Isola 3 (con Palma alzata) --><div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
+        
+        <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="island-base"></div>
             <div class="island-top">Island 3: SYNTHESIZE</div>
             <div class="palm-tree">
@@ -592,7 +597,8 @@
             </div>
         </div>
         
-        <!-- Isola 4 (Il Tesoro, con Forziere migliorato) --><div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
+        
+        <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div class="island-base"></div>
             <div class="island-top">TREASURE ISLAND</div>
             <div id="treasure-chest-on-island">
@@ -600,7 +606,8 @@
             </div>
         </div>
 
-        <!-- Il Mare --><div class="absolute bottom-0 left-0 flex flex-row z-0">
+        
+        <div class="absolute bottom-0 left-0 flex flex-row z-0">
             <script>
                 for (let i = 0; i < 38; i++) {
                     document.write('<div class="sea-block"></div>');
@@ -609,7 +616,8 @@
         </div>
     </div>
 
-    <!-- Modale Sfide --><div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
+    
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
     <div id="challenge-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div id="modal-title" class="p-4 text-xl modal-header-pixel"></div>
         <div class="p-6 text-gray-800 space-y-4 font-readable">
@@ -633,14 +641,16 @@
         </div>
     </div>
 
-    <!-- Modale Tesoro (con Baule Animato) --><div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
+    
+    <div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div class="p-4 text-xl modal-header-pixel text-center">TREASURE UNLOCKED!</div>
         <div class="p-6 text-gray-800 space-y-4 font-readable text-center">
             
             <h2 class="text-2xl font-bold text-amber-900">Zally found the treasure!</h2>
             <p class="text-base">Thanks to your powerful prompts, you've mastered the gDrive Hunt!</p>
             
-            <!-- Baule del Tesoro Animato --><div id="treasure-chest-modal-inner">
+            
+            <div id="treasure-chest-modal-inner">
                 <div id="treasure-chest-modal-lid" class="lid"></div>
                 <div id="treasure-chest-modal-base" class="base">
                     <div class="coin-pile">
@@ -706,7 +716,7 @@
         const treasureModal = document.getElementById('treasure-modal');
         const closeTreasureModalBtn = document.getElementById('close-treasure-modal-btn');
         const challengeTriggers = document.querySelectorAll('.challenge-trigger');
-        const treasureChestModal = document.getElementById('treasure-chest-modal-inner'); /* ID CORRETTO */
+        const treasureChestModal = document.getElementById('treasure-chest-modal-inner'); 
         
         const modalTitle = document.getElementById('modal-title');
         const modalConcept = document.getElementById('modal-concept');
@@ -733,10 +743,10 @@
             isModalOpen = true;
             modalOverlay.classList.remove('hidden');
             treasureModal.classList.remove('hidden');
-            // Trigger animazione baule
+            
             setTimeout(() => {
-                treasureChestModal.classList.add('open');
-            }, 100); // Leggero ritardo per far apparire il modale
+                treasureModal.classList.add('open'); 
+            }, 100); 
         }
 
         function closeModal() {
@@ -744,8 +754,8 @@
             modalOverlay.classList.add('hidden');
             challengeModal.classList.add('hidden');
             treasureModal.classList.add('hidden');
-            // Resetta animazione baule
-            treasureChestModal.classList.remove('open');
+            
+            treasureModal.classList.remove('open'); 
         }
 
         challengeTriggers.forEach(trigger => {
@@ -805,4 +815,3 @@
     </script>
 </body>
 </html>
-
