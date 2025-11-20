@@ -170,26 +170,24 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- IL GALEONE PIRATA (SOLO LUI!) --- */
+        /* --- IL GALEONE PIRATA (RIDIMENSIONATO) --- */
         #zally-container {
-            width: 200px; 
-            height: 200px; 
+            width: 300px;  /* Aumentato per dare spazio */
+            height: 300px; /* Aumentato per dare spazio */
             position: absolute;
-            bottom: 30px; 
+            bottom: 10px;  /* Abbassato per immergere la chiglia */
             left: 80px;
             z-index: 10;
-            /* Transizione fluida per il movimento */
+            /* Transizione fluida */
             transition: left 0.1s linear; 
             /* Sfondo: Il Galeone */
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center bottom; 
-            /* Permette ai click di passare attraverso (per cliccare le isole sotto) */
+            /* Click-through */
             pointer-events: none;
         }
-
-        /* Zally Image RIMOSSO */
 
         /* --- ISOLE --- */
         .island {
@@ -461,9 +459,9 @@
     <!-- GIOCO -->
     <div class="game-world" id="game-world">
         
-        <!-- ZALLY CONTAINER (ORA SOLO GALEONE) -->
+        <!-- GALEONE CONTAINER -->
         <div id="zally-container" title="This is Zally!">
-            <!-- Nessun #zally-image qui dentro, perché la nave è lo sfondo del container -->
+            <!-- (Vuoto perché l'immagine è nel background CSS) -->
         </div>
 
         <!-- ISOLE -->
@@ -605,7 +603,6 @@
 
         // --- LOGICA MOVIMENTO ---
         const zallyContainer = document.getElementById('zally-container');
-        // Zally Image variable removed
         let zallyPositionX = 80;
         const moveSpeed = 15;
         const worldWidth = 2400;
