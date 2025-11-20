@@ -170,22 +170,19 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- IL GALEONE PIRATA (RIDIMENSIONATO) --- */
+        /* --- IL GALEONE PIRATA (DIMENSIONI AUMENTATE) --- */
         #zally-container {
-            width: 300px;  /* Aumentato per dare spazio */
-            height: 300px; /* Aumentato per dare spazio */
+            width: 400px;  /* Aumentato da 300 a 400 */
+            height: 400px; /* Aumentato da 300 a 400 */
             position: absolute;
-            bottom: 10px;  /* Abbassato per immergere la chiglia */
-            left: 80px;
+            bottom: -40px; /* Abbassato per compensare l'altezza */
+            left: 50px;    /* Spostato leggermente a sinistra per compensare la larghezza */
             z-index: 10;
-            /* Transizione fluida */
             transition: left 0.1s linear; 
-            /* Sfondo: Il Galeone */
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center bottom; 
-            /* Click-through */
             pointer-events: none;
         }
 
