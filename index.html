@@ -169,22 +169,27 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- ZALLY E NAVE (GALEONE PIRATA AVANZATO) --- */
+        /* --- ZALLY E NAVE (IMMAGINI PNG) --- */
+        /* Stili aggiornati secondo le tue indicazioni */
         #zally-container {
-            width: 180px; /* Larghezza maggiore per il galeone */
-            height: 180px; 
+            width: 200px; /* Adatta la larghezza in base all'immagine */
+            height: 200px; /* Adatta l'altezza in base all'immagine */
             position: absolute;
-            bottom: 50px; /* Un po' più basso nell'acqua */
+            bottom: 30px; /* Regola per posizionare il galeone correttamente sull'acqua */
             left: 80px;
             z-index: 10;
             transition: left 0.1s linear;
+            background-image: url('pirate-galleon.png'); /* <--- QUI INSERISCI LA TUA IMMAGINE */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center bottom; /* Per allineare alla base del contenitore */
         }
         #zally-image {
-            width: 64px; 
+            width: 64px; /* Lascia le dimensioni di Zally */
             height: 64px;
             position: absolute;
-            bottom: 90px; /* In piedi sul ponte superiore */
-            left: 50px; 
+            bottom: 90px; /* Regola questa posizione per far sì che Zally sia sul ponte del tuo galeone */
+            left: 80px; /* Regola questa posizione per far sì che Zally sia sul ponte del tuo galeone */
             z-index: 15;
             background-image: url('zally-the-pirate.png');
             background-size: contain;
@@ -193,124 +198,8 @@
             transform-origin: center;
             transition: transform 0.1s linear;
         }
-        
-        /* Scafo Principale */
-        #ship-hull {
-            width: 160px;
-            height: 70px;
-            background: linear-gradient(to bottom, #8B4513, #5D4037); /* Legno scuro */
-            border: 4px solid #2d1a10;
-            border-radius: 0 0 40px 40px; /* Fondo arrotondato */
-            position: absolute;
-            bottom: 0;
-            left: 10px;
-            z-index: 11;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
-        }
-        /* Ponte di coperta */
-        #deck {
-            position: absolute;
-            width: 180px;
-            height: 20px;
-            background: #A0522D;
-            border: 3px solid #2d1a10;
-            border-radius: 5px;
-            top: 90px; /* Sopra lo scafo */
-            left: 0;
-            z-index: 12;
-        }
-        /* Prua (avanti) */
-        #bow {
-            position: absolute;
-            top: 70px;
-            right: -10px;
-            width: 0;
-            height: 0;
-            border-left: 30px solid #8B4513;
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            transform: rotate(-20deg);
-            z-index: 10;
-        }
-        /* Poppa (dietro) - Castello di poppa */
-        #stern {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 40px;
-            height: 60px;
-            background: #8B4513;
-            border: 3px solid #2d1a10;
-            z-index: 11;
-        }
 
-        /* Albero Maestro */
-        .mast-main {
-            position: absolute;
-            bottom: 70px;
-            left: 90px;
-            width: 8px;
-            height: 100px;
-            background: #3E2723;
-            z-index: 9;
-        }
-        /* Vela Maestra */
-        .sail-main {
-            position: absolute;
-            top: 10px;
-            left: -40px;
-            width: 90px;
-            height: 60px;
-            background: #F5F5DC;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transform: skewX(-5deg); /* Effetto vento */
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        /* Albero di Mezzana (più piccolo) */
-        .mast-mizzen {
-            position: absolute;
-            bottom: 70px;
-            left: 40px;
-            width: 6px;
-            height: 70px;
-            background: #3E2723;
-            z-index: 9;
-        }
-        .sail-mizzen {
-            position: absolute;
-            top: 10px;
-            left: -25px;
-            width: 50px;
-            height: 40px;
-            background: #F5F5DC;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transform: skewX(-5deg);
-        }
-
-        /* Bandiera Pirata */
-        .pirate-flag {
-            position: absolute;
-            top: -25px;
-            left: 0;
-            width: 30px;
-            height: 20px;
-            background: black;
-            z-index: 15;
-            transform: rotate(-5deg);
-        }
-        .pirate-flag::after {
-            content: '💀';
-            position: absolute;
-            font-size: 14px;
-            top: 2px;
-            left: 6px;
-        }
-
-
-        /* --- STILE ISOLE MIGLIORATE --- */
+        /* --- STILE ISOLE --- */
         .island {
             width: 180px;
             height: 90px;
@@ -349,7 +238,7 @@
             z-index: 2; /* Testo sopra la base */
         }
         
-        /* --- PALME (RADDRIZZATE E SPOSTATE) --- */
+        /* --- PALME --- */
         .palm-tree {
             position: absolute;
             bottom: 40px; /* ALZATE per non coprire il testo */
@@ -382,7 +271,7 @@
         .palm-leaf-4 { right: -30px; top: -35px; transform: rotate(60deg); }
         .palm-leaf-5 { left: -10px; top: -45px; transform: rotate(0deg) scaleY(1.2); }
         
-        /* --- ISOLA DEL TESORO (CON VERO BAULE) --- */
+        /* --- ISOLA DEL TESORO --- */
         #treasure-chest-on-island {
             position: absolute;
             width: 70px;
@@ -597,22 +486,10 @@
     <!-- MONDO DI GIOCO -->
     <div class="game-world" id="game-world">
         
-        <!-- GALEONE DI ZALLY -->
+        <!-- GALEONE DI ZALLY (Immagini) -->
         <div id="zally-container" title="This is Zally!">
             <div id="zally-image"></div>
-            
-            <div id="ship-hull"></div>
-            <div id="deck"></div>
-            <div id="bow"></div>
-            <div id="stern"></div>
-            
-            <div class="mast mast-main">
-                <div class="sail sail-main"></div>
-                <div class="pirate-flag"></div>
-            </div>
-            <div class="mast mast-mizzen">
-                <div class="sail sail-mizzen"></div>
-            </div>
+            <!-- Elementi nave CSS rimossi come richiesto -->
         </div>
 
         <!-- Isola 1 -->
