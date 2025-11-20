@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gDrive Treasure Hunt</title>
-    <!-- Import Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Import Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
@@ -115,7 +117,7 @@
             to { transform: rotate(20deg); }
         }
 
-        /* --- HEADER INTEGRATO NEL CIELO (colori grigio chiaro) --- */
+        /* --- HEADER --- */
         .game-header {
             position: fixed;
             top: 20px;
@@ -123,15 +125,16 @@
             transform: translateX(-50%);
             z-index: 50;
             text-align: center;
+            pointer-events: none;
         }
         .game-header h1 {
-            font-size: 1.5rem; /* 24px */
-            color: #E0E0E0; /* Grigio chiaro */
+            font-size: 1.5rem;
+            color: #E0E0E0;
             text-shadow: 3px 3px 0px #000000;
         }
         .game-header p {
-            font-size: 1rem; /* 16px */
-            color: #B0B0B0; /* Grigio più scuro per sottotitolo */
+            font-size: 1rem;
+            color: #B0B0B0;
             text-shadow: 2px 2px 0px #000000;
             margin-top: 5px;
         }
@@ -142,7 +145,7 @@
             position: relative;
         }
 
-        /* --- STILE DEL MARE --- */
+        /* --- MARE --- */
         .sea-block {
             background-color: #1e40af;
             width: 64px;
@@ -167,7 +170,7 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- ZALLY E NAVE (IMMAGINI PNG) --- */
+        /* --- IL GALEONE PIRATA (SOLO LUI!) --- */
         #zally-container {
             width: 200px; 
             height: 200px; 
@@ -175,30 +178,20 @@
             bottom: 30px; 
             left: 80px;
             z-index: 10;
-            transition: left 0.1s linear;
+            /* Transizione fluida per il movimento */
+            transition: left 0.1s linear; 
+            /* Sfondo: Il Galeone */
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center bottom; 
+            /* Permette ai click di passare attraverso (per cliccare le isole sotto) */
+            pointer-events: none;
         }
 
-        #zally-image {
-            width: 64px; 
-            height: 64px;
-            position: absolute;
-            /* Valori CORRETTI per posizionare Zally sul ponte del galeone */
-            bottom: 120px; /* Regolato per essere sul ponte (200px nave - 64px zally + un po' per il ponte) */
-            left: 68px; /* Regolato per essere più centrato sul ponte del galeone */
-            z-index: 15;
-            background-image: url('zally-the-pirate.png'); 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            transform-origin: center;
-            transition: transform 0.1s linear;
-        }
+        /* Zally Image RIMOSSO */
 
-        /* --- STILE ISOLE --- */
+        /* --- ISOLE --- */
         .island {
             width: 180px;
             height: 90px;
@@ -234,7 +227,7 @@
             font-size: 12px;
             color: white;
             text-shadow: 2px 2px 0px black;
-            z-index: 2; /* Testo sopra la base */
+            z-index: 2;
         }
         
         /* --- PALME --- */
@@ -263,7 +256,6 @@
             border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%; 
             transform-origin: center bottom; 
         }
-        /* Foglie orientate correttamente */
         .palm-leaf-1 { left: -50px; transform: rotate(-20deg); }
         .palm-leaf-2 { right: -50px; transform: rotate(20deg); }
         .palm-leaf-3 { left: -30px; top: -35px; transform: rotate(-60deg); }
@@ -284,7 +276,7 @@
             z-index: 6;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
-        #treasure-chest-on-island::before { /* Coperchio arrotondato */
+        #treasure-chest-on-island::before {
             content: '';
             position: absolute;
             top: -15px;
@@ -295,7 +287,7 @@
             border: 3px solid black;
             border-radius: 20px 20px 0 0; 
         }
-        #treasure-chest-on-island::after { /* Bande metalliche */
+        #treasure-chest-on-island::after {
             content: '';
             position: absolute;
             top: -15px;
@@ -306,7 +298,6 @@
             border-left: 3px solid #FFD700;
             border-right: 3px solid #FFD700;
         }
-        /* Serratura */
         #treasure-chest-on-island .lock {
             position: absolute;
             width: 12px;
@@ -319,8 +310,7 @@
             z-index: 7;
         }
 
-
-        /* --- Stili Modali --- */
+        /* --- MODALI --- */
         .modal-pixel {
             font-family: 'Inter', sans-serif; 
             border: 4px solid black;
@@ -344,7 +334,7 @@
              box-shadow: 2px 2px 0px black;
         }
 
-        /* --- Forziere del Tesoro ANIMATO nel Modale --- */
+        /* --- TESORO ANIMATO NEL MODALE --- */
         #treasure-chest-modal-inner {
             width: 150px;
             height: 110px;
@@ -365,10 +355,10 @@
         }
         #treasure-chest-modal-lid {
             width: 150px;
-            height: 50px; /* Coperchio più alto */
+            height: 50px;
             background: linear-gradient(to top, #8B4513, #A0522D);
             border: 4px solid black;
-            border-radius: 40px 40px 0 0; /* Molto arrotondato */
+            border-radius: 40px 40px 0 0;
             position: absolute;
             bottom: 86px;
             left: -4px;
@@ -377,7 +367,6 @@
             z-index: 10;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-        /* Bande dorate sul coperchio del modale */
         #treasure-chest-modal-lid::before {
             content: '';
             position: absolute;
@@ -400,8 +389,6 @@
             border: 1px solid black;
             opacity: 0.7;
         }
-
-        /* Stato "Aperto" del coperchio */
         #treasure-modal.open #treasure-chest-modal-lid {
             transform: rotateX(-140deg);
         }
@@ -411,13 +398,12 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100px; /* Pieno fino all'orlo */
+            height: 100px;
             overflow: hidden;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.3s 0.3s, transform 0.5s 0.3s ease-out;
         }
-        /* Stato "Visibile" delle monete */
         #treasure-modal.open .coin-pile {
             opacity: 1;
             transform: translateY(0);
@@ -427,7 +413,7 @@
             position: absolute;
             width: 28px;
             height: 28px;
-            background: #FFD700; /* Oro vero */
+            background: #FFD700;
             border: 2px solid #DAA520;
             border-radius: 50%;
             animation: shimmer 1.5s infinite;
@@ -438,7 +424,6 @@
             50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 15px #FFFF00; }
         }
         
-        /* Tante monete! */
         .coin:nth-child(1) { bottom: 5px; left: 10px; animation-delay: 0s; }
         .coin:nth-child(2) { bottom: 15px; left: 30px; animation-delay: -0.2s; }
         .coin:nth-child(3) { bottom: 5px; left: 55px; animation-delay: -0.5s; }
@@ -453,138 +438,95 @@
         .coin:nth-child(12) { bottom: 40px; left: 65px; animation-delay: -0.5s; }
         .coin:nth-child(13) { bottom: 50px; left: 10px; animation-delay: -0.1s; }
         .coin:nth-child(14) { bottom: 45px; left: 110px; animation-delay: -0.7s; }
-
-
     </style>
 </head>
 <body class="m-0 p-0">
 
-    <!-- ELEMENTI DEL CIELO --><div class="sky-elements">
+    <!-- CIELO -->
+    <div class="sky-elements">
         <div class="sun"></div>
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
-        
-        <div class="seagull seagull-1">
-            <div class="seagull-wing seagull-wing-left"></div>
-            <div class="seagull-wing seagull-wing-right"></div>
-        </div>
-        <div class="seagull seagull-2">
-            <div class="seagull-wing seagull-wing-left"></div>
-            <div class="seagull-wing seagull-wing-right"></div>
-        </div>
+        <div class="seagull seagull-1"><div class="seagull-wing seagull-wing-left"></div><div class="seagull-wing seagull-wing-right"></div></div>
+        <div class="seagull seagull-2"><div class="seagull-wing seagull-wing-left"></div><div class="seagull-wing seagull-wing-right"></div></div>
     </div>
     
-    <!-- HEADER INTEGRATO --><header class="game-header">
+    <!-- HEADER -->
+    <header class="game-header">
         <h1>gDrive Treasure Hunt</h1>
         <p class="font-readable italic">"Stop *searching*. Start *finding*."</p>
     </header>
 
-    <!-- MONDO DI GIOCO --><div class="game-world" id="game-world">
+    <!-- GIOCO -->
+    <div class="game-world" id="game-world">
         
-        <!-- GALEONE DI ZALLY --><div id="zally-container" title="This is Zally!">
-            <!-- Zally è ora posizionato correttamente sul ponte --><div id="zally-image"></div>
+        <!-- ZALLY CONTAINER (ORA SOLO GALEONE) -->
+        <div id="zally-container" title="This is Zally!">
+            <!-- Nessun #zally-image qui dentro, perché la nave è lo sfondo del container -->
         </div>
 
-        <!-- Isola 1 --><div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
+        <!-- ISOLE -->
+        <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="island-base"></div>
             <div class="island-top">Island 1: FIND</div>
-            <div class="palm-tree">
-                <div class="palm-trunk"></div>
-                <div class="palm-leaf palm-leaf-1"></div>
-                <div class="palm-leaf palm-leaf-2"></div>
-                <div class="palm-leaf palm-leaf-3"></div>
-                <div class="palm-leaf palm-leaf-4"></div>
-                <div class="palm-leaf palm-leaf-5"></div>
-            </div>
+            <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
 
-        <!-- Isola 2 --><div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
+        <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="island-base"></div>
             <div class="island-top">Island 2: EXTRACT</div>
-            <div class="palm-tree">
-                <div class="palm-trunk"></div>
-                <div class="palm-leaf palm-leaf-1"></div>
-                <div class="palm-leaf palm-leaf-2"></div>
-                <div class="palm-leaf palm-leaf-3"></div>
-                <div class="palm-leaf palm-leaf-4"></div>
-                <div class="palm-leaf palm-leaf-5"></div>
-            </div>
+            <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
         
-        <!-- Isola 3 --><div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
+        <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="island-base"></div>
             <div class="island-top">Island 3: SYNTHESIZE</div>
-            <div class="palm-tree">
-                <div class="palm-trunk"></div>
-                <div class="palm-leaf palm-leaf-1"></div>
-                <div class="palm-leaf palm-leaf-2"></div>
-                <div class="palm-leaf palm-leaf-3"></div>
-                <div class="palm-leaf palm-leaf-4"></div>
-                <div class="palm-leaf palm-leaf-5"></div>
-            </div>
+            <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
         
-        <!-- Isola 4 (Tesoro) --><div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
+        <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div class="island-base"></div>
             <div class="island-top">TREASURE ISLAND</div>
-            <div id="treasure-chest-on-island">
-                <div class="lock"></div>
-            </div>
+            <div id="treasure-chest-on-island"><div class="lock"></div></div>
         </div>
 
-        <!-- Mare --><div class="absolute bottom-0 left-0 flex flex-row z-0">
-            <script>
-                for (let i = 0; i < 38; i++) {
-                    document.write('<div class="sea-block"></div>');
-                }
-            </script>
+        <!-- MARE -->
+        <div class="absolute bottom-0 left-0 flex flex-row z-0">
+            <script>for(let i=0;i<38;i++){document.write('<div class="sea-block"></div>');}</script>
         </div>
     </div>
 
-    <!-- Modale Sfide --><div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
+    <!-- MODALI -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
     <div id="challenge-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div id="modal-title" class="p-4 text-xl modal-header-pixel"></div>
         <div class="p-6 text-gray-800 space-y-4 font-readable">
-            <p id="modal-concept" class="text-base">Zally is stuck! He needs the right prompt to sail to the next island. This is your objective:</p>
+            <p id="modal-concept" class="text-base">The galleon is stuck! It needs the right prompt to sail to the next island. This is your objective:</p>
             <p id="modal-objective" class="text-lg font-bold"></p>
-            
-            <div class="bg-red-100 border-2 border-red-500 p-3 rounded-lg">
-                <h3 class="font-bold text-red-700">Weak Prompt (Zally is stuck!):</h3>
-                <p id="modal-bad-prompt" class="text-sm mt-1 font-mono"></p>
-            </div>
-            <div class="bg-green-100 border-2 border-green-600 p-3 rounded-lg">
-                <h3 class="font-bold text-green-800">Strong Prompt (Full speed ahead!):</h3>
-                <p id="modal-good-prompt" class="text-sm mt-1 font-mono"></p>
-            </div>
+            <div class="bg-red-100 border-2 border-red-500 p-3 rounded-lg"><h3 class="font-bold text-red-700">Weak Prompt (Stuck!):</h3><p id="modal-bad-prompt" class="text-sm mt-1 font-mono"></p></div>
+            <div class="bg-green-100 border-2 border-green-600 p-3 rounded-lg"><h3 class="font-bold text-green-800">Strong Prompt (Full speed ahead!):</h3><p id="modal-good-prompt" class="text-sm mt-1 font-mono"></p></div>
             <p id="modal-takeaway" class="pt-4 text-base font-bold"></p>
         </div>
-        <div class="p-4 bg-gray-100 border-t-4 border-black flex justify-end">
-            <button id="close-modal-btn" class="modal-button-pixel bg-blue-500 text-white px-6 py-2 rounded-lg">
-                Sail On!
-            </button>
-        </div>
+        <div class="p-4 bg-gray-100 border-t-4 border-black flex justify-end"><button id="close-modal-btn" class="modal-button-pixel bg-blue-500 text-white px-6 py-2 rounded-lg">Sail On!</button></div>
     </div>
 
-    <!-- Modale Tesoro --><div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
+    <div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div class="p-4 text-xl modal-header-pixel text-center">TREASURE UNLOCKED!</div>
         <div class="p-6 text-gray-800 space-y-4 font-readable text-center">
-            
-            <h2 class="text-2xl font-bold text-amber-900">Zally found the treasure!</h2>
+            <h2 class="text-2xl font-bold text-amber-900">You found the treasure!</h2>
             <p class="text-base">Thanks to your powerful prompts, you've mastered the gDrive Hunt!</p>
-            
-            <!-- Baule del Tesoro Animato --><div id="treasure-chest-modal-inner">
+            <div id="treasure-chest-modal-inner">
                 <div id="treasure-chest-modal-lid" class="lid"></div>
                 <div id="treasure-chest-modal-base" class="base">
                     <div class="coin-pile">
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div><div class="coin"></div><div class="coin"></div><div class="coin"></div>
+                        <div class="coin"></div><div class="coin"></div><div class="coin"></div><div class="coin"></div>
+                        <div class="coin"></div><div class="coin"></div><div class="coin"></div><div class="coin"></div>
+                        <div class="coin"></div><div class="coin"></div>
                     </div>
                 </div>
             </div>
-
             <h3 class="text-xl font-bold pt-12">Your New Superpowers:</h3>
             <ul class="mt-2 space-y-2 text-lg text-left inline-block">
                 <li>🧠 Find <strong>concepts</strong>, not just file names.</li>
@@ -592,31 +534,102 @@
                 <li>💬 Get <strong>answers</strong> from multiple documents.</li>
             </ul>
         </div>
-        <div class="p-4 bg-gray-100 border-t-4 border-black flex justify-end">
-            <button id="close-treasure-modal-btn" class="modal-button-pixel bg-green-600 text-white px-6 py-2 rounded-lg">
-                Awesome!
-            </button>
-        </div>
+        <div class="p-4 bg-gray-100 border-t-4 border-black flex justify-end"><button id="close-treasure-modal-btn" class="modal-button-pixel bg-green-600 text-white px-6 py-2 rounded-lg">Awesome!</button></div>
     </div>
 
-
     <script>
-        // --- Contenuto delle Challenge ---
         const challenges = [
-            { 
-                id: 1, 
-                title: "Island 1: FIND THE PLAN", 
-                concept: "Zally is lost in a sea of files. He needs to find the *right* document, even if he doesn't know the name.",
-                objective: "Find the main project document for the 'Supplier Returns' initiative.",
-                badPrompt: "'supplier returns'",
-                goodPrompt: "'Find the Project Plan for Supplier Returns Process Improvement'", 
-                takeaway: "Gemini understands concepts, not just keywords. Ask *what* you want, not just what you remember." 
-            },
-            { 
-                id: 2, 
-                title: "Island 2: EXTRACT THE OWNER", 
-                concept: "Zally found the island (file), but doesn't want to dig for hours. He needs to get info *without opening the file*.",
-                objective: "Who is the owner of this initiative, according to the kick-off presentation?",
-                badPrompt: "*[Opens file, wastes 5 minutes reading]*", 
-                goodPrompt: "Right-click the file in Drive and use Gemini's summary feature, or ask: 'Who is the owner of the Supplier Returns project?'", 
-                takeaway: "Use Gemini's contextual summary to get answers *on the
+            { id: 1, title: "Island 1: FIND THE PLAN", concept: "Lost in a sea of files. You need to find the *right* document.", objective: "Find the main project document for the 'Supplier Returns' initiative.", badPrompt: "'supplier returns'", goodPrompt: "'Find the Project Plan for Supplier Returns Process Improvement'", takeaway: "Gemini understands concepts, not just keywords." },
+            { id: 2, title: "Island 2: EXTRACT THE OWNER", concept: "Found the island, but need info *without opening the file*.", objective: "Who is the owner of this initiative?", badPrompt: "*[Opens file, wastes time]*", goodPrompt: "Right-click > Gemini summary, or ask: 'Who is the owner?'", takeaway: "Use Gemini's contextual summary to get answers *on the fly*." },
+            { id: 3, title: "Island 3: SYNTHESIZE UPDATES", concept: "Need one answer from three different islands.", objective: "What are the updates and deadlines?", badPrompt: "*[Copies notes from 3 files]*", goodPrompt: "'Summarize key updates and next deadlines from the Supplier Returns initiative'", takeaway: "Gemini can read *multiple* documents at once." }
+        ];
+
+        const modalOverlay = document.getElementById('modal-overlay');
+        const challengeModal = document.getElementById('challenge-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const treasureModal = document.getElementById('treasure-modal');
+        const closeTreasureModalBtn = document.getElementById('close-treasure-modal-btn');
+        const challengeTriggers = document.querySelectorAll('.challenge-trigger');
+        
+        const modalTitle = document.getElementById('modal-title');
+        const modalConcept = document.getElementById('modal-concept');
+        const modalObjective = document.getElementById('modal-objective');
+        const modalBadPrompt = document.getElementById('modal-bad-prompt');
+        const modalGoodPrompt = document.getElementById('modal-good-prompt');
+        const modalTakeaway = document.getElementById('modal-takeaway');
+
+        let isModalOpen = false;
+
+        function openChallengeModal(challenge) {
+            isModalOpen = true;
+            modalTitle.textContent = challenge.title;
+            modalConcept.textContent = challenge.concept;
+            modalObjective.textContent = challenge.objective;
+            modalBadPrompt.textContent = challenge.badPrompt;
+            modalGoodPrompt.textContent = challenge.goodPrompt;
+            modalTakeaway.textContent = challenge.takeaway;
+            modalOverlay.classList.remove('hidden');
+            challengeModal.classList.remove('hidden');
+        }
+
+        function openTreasureModal() {
+            isModalOpen = true;
+            modalOverlay.classList.remove('hidden');
+            treasureModal.classList.remove('hidden');
+            setTimeout(() => { treasureModal.classList.add('open'); }, 100);
+        }
+
+        function closeModal() {
+            isModalOpen = false;
+            modalOverlay.classList.add('hidden');
+            challengeModal.classList.add('hidden');
+            treasureModal.classList.add('hidden');
+            treasureModal.classList.remove('open');
+        }
+
+        challengeTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const challengeId = parseInt(trigger.dataset.challengeId);
+                if (challengeId === 4) { openTreasureModal(); } 
+                else {
+                    const challengeData = challenges.find(c => c.id === challengeId);
+                    if (challengeData) openChallengeModal(challengeData);
+                }
+            });
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        closeTreasureModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        // --- LOGICA MOVIMENTO ---
+        const zallyContainer = document.getElementById('zally-container');
+        // Zally Image variable removed
+        let zallyPositionX = 80;
+        const moveSpeed = 15;
+        const worldWidth = 2400;
+        let screenWidth = window.innerWidth;
+        
+        window.addEventListener('resize', () => { screenWidth = window.innerWidth; });
+
+        document.addEventListener('keydown', (e) => {
+            if (isModalOpen) return;
+            if (e.key === 'ArrowRight') {
+                zallyPositionX = Math.min(zallyPositionX + moveSpeed, worldWidth - zallyContainer.offsetWidth - 10);
+                zallyContainer.style.transform = 'scaleX(1)'; 
+            } else if (e.key === 'ArrowLeft') {
+                zallyPositionX = Math.max(zallyPositionX - moveSpeed, 0);
+                zallyContainer.style.transform = 'scaleX(-1)';
+            }
+            zallyContainer.style.left = zallyPositionX + 'px';
+
+            let cameraLookAhead = screenWidth / 3;
+            let targetScrollLeft = zallyPositionX - cameraLookAhead;
+            targetScrollLeft = Math.max(0, targetScrollLeft);
+            targetScrollLeft = Math.min(targetScrollLeft, worldWidth - screenWidth);
+            window.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
