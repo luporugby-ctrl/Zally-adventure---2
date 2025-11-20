@@ -117,7 +117,7 @@
             to { transform: rotate(20deg); }
         }
 
-        /* --- HEADER INTEGRATO (GRIGIO CHIARO) --- */
+        /* --- HEADER INTEGRATO NEL CIELO (colori grigio chiaro) --- */
         .game-header {
             position: fixed;
             top: 20px;
@@ -169,12 +169,12 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- ZALLY E GALEONE PIRATA --- */
+        /* --- ZALLY E NAVE (GALEONE PIRATA AVANZATO) --- */
         #zally-container {
-            width: 150px; 
-            height: 150px; 
+            width: 180px; /* Larghezza maggiore per il galeone */
+            height: 180px; 
             position: absolute;
-            bottom: 60px;
+            bottom: 50px; /* Un po' più basso nell'acqua */
             left: 80px;
             z-index: 10;
             transition: left 0.1s linear;
@@ -183,9 +183,9 @@
             width: 64px; 
             height: 64px;
             position: absolute;
-            bottom: 70px; /* In piedi sul ponte */
-            left: 43px; /* Centrato sul ponte */
-            z-index: 12;
+            bottom: 90px; /* In piedi sul ponte superiore */
+            left: 50px; 
+            z-index: 15;
             background-image: url('zally-the-pirate.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -193,81 +193,122 @@
             transform-origin: center;
             transition: transform 0.1s linear;
         }
+        
+        /* Scafo Principale */
         #ship-hull {
-            width: 150px;
-            height: 60px;
-            background: linear-gradient(to right, #8B4513, #A0522D); 
-            border: 4px solid black;
-            border-radius: 10px 10px 30px 30px / 5px 5px 20px 20px; 
+            width: 160px;
+            height: 70px;
+            background: linear-gradient(to bottom, #8B4513, #5D4037); /* Legno scuro */
+            border: 4px solid #2d1a10;
+            border-radius: 0 0 40px 40px; /* Fondo arrotondato */
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 10px;
             z-index: 11;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
         }
-        #ship-hull::before { /* Prua */
-            content: '';
+        /* Ponte di coperta */
+        #deck {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            width: 30px;
-            height: 70px;
-            background: #8B4513;
-            border: 4px solid black;
-            border-radius: 5px 40px 0 0;
-            transform: skewY(-20deg);
+            width: 180px;
+            height: 20px;
+            background: #A0522D;
+            border: 3px solid #2d1a10;
+            border-radius: 5px;
+            top: 90px; /* Sopra lo scafo */
+            left: 0;
+            z-index: 12;
         }
-        #ship-hull::after { /* Poppa */
-            content: '';
+        /* Prua (avanti) */
+        #bow {
             position: absolute;
-            top: -10px;
+            top: 70px;
             right: -10px;
-            width: 30px;
-            height: 70px;
-            background: #8B4513;
-            border: 4px solid black;
-            border-radius: 40px 5px 0 0;
-            transform: skewY(20deg);
+            width: 0;
+            height: 0;
+            border-left: 30px solid #8B4513;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            transform: rotate(-20deg);
+            z-index: 10;
         }
-        .mast {
+        /* Poppa (dietro) - Castello di poppa */
+        #stern {
             position: absolute;
-            bottom: 60px; 
-            left: 70px;
+            top: 50px;
+            left: 0;
+            width: 40px;
+            height: 60px;
+            background: #8B4513;
+            border: 3px solid #2d1a10;
+            z-index: 11;
+        }
+
+        /* Albero Maestro */
+        .mast-main {
+            position: absolute;
+            bottom: 70px;
+            left: 90px;
             width: 8px;
-            height: 80px;
-            background: #663300;
-            border: 3px solid black;
+            height: 100px;
+            background: #3E2723;
             z-index: 9;
         }
-        .sail {
+        /* Vela Maestra */
+        .sail-main {
             position: absolute;
-            top: 10px; 
-            left: -30px;
-            width: 70px;
-            height: 50px;
-            background: #f5f5dc; 
-            border: 3px solid black;
-            border-radius: 0 0 10px 10px;
-            transform: skewX(-10deg); 
+            top: 10px;
+            left: -40px;
+            width: 90px;
+            height: 60px;
+            background: #F5F5DC;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transform: skewX(-5deg); /* Effetto vento */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
         }
+        
+        /* Albero di Mezzana (più piccolo) */
+        .mast-mizzen {
+            position: absolute;
+            bottom: 70px;
+            left: 40px;
+            width: 6px;
+            height: 70px;
+            background: #3E2723;
+            z-index: 9;
+        }
+        .sail-mizzen {
+            position: absolute;
+            top: 10px;
+            left: -25px;
+            width: 50px;
+            height: 40px;
+            background: #F5F5DC;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transform: skewX(-5deg);
+        }
+
+        /* Bandiera Pirata */
         .pirate-flag {
             position: absolute;
-            top: -20px;
-            left: 0px;
+            top: -25px;
+            left: 0;
             width: 30px;
             height: 20px;
             background: black;
-            border: 2px solid white;
             z-index: 15;
+            transform: rotate(-5deg);
         }
-        .pirate-flag::before {
-            content: '💀'; 
+        .pirate-flag::after {
+            content: '💀';
             position: absolute;
-            top: -2px;
-            left: 0px;
-            font-size: 20px;
-            color: white;
+            font-size: 14px;
+            top: 2px;
+            left: 6px;
         }
+
 
         /* --- STILE ISOLE MIGLIORATE --- */
         .island {
@@ -305,43 +346,43 @@
             font-size: 12px;
             color: white;
             text-shadow: 2px 2px 0px black;
+            z-index: 2; /* Testo sopra la base */
         }
         
-        /* --- PALME - CODICE CORRETTO --- */
+        /* --- PALME (RADDRIZZATE E SPOSTATE) --- */
         .palm-tree {
             position: absolute;
-            bottom: 120px; /* Posizione base dell'albero */
+            bottom: 40px; /* ALZATE per non coprire il testo */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 6;
+            z-index: 1; /* Dietro al testo dell'isola se necessario, o sopra */
         }
         .palm-trunk {
-            /* Integro il tuo codice, Capitano! */
-            position: relative; /* Chiave per attaccare le foglie */
-            transform: translateY(-30px); /* Alza l'albero come richiesto */
             width: 10px;
-            height: 80px; /* La tua altezza */
+            height: 70px; /* Tronco più alto */
             background: linear-gradient(to right, #8B4513, #654321);
-            border: 3px solid black;
+            border: 2px solid black;
             border-radius: 5px;
+            margin: 0 auto; /* Centrato */
         }
         .palm-leaf {
-            /* Ora le foglie sono attaccate alla cima del tronco */
             position: absolute;
-            top: 0; /* Cima del .palm-trunk */
-            left: -20px; /* Centra le foglie sul tronco */
-            width: 50px;
-            height: 20px;
-            background: #006400;
-            border: 3px solid black;
-            border-radius: 50% / 100%;
+            top: -20px; /* In cima al tronco */
+            width: 60px;
+            height: 25px;
+            background: #228B22; /* Verde foresta */
+            border: 2px solid black;
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%; /* Forma a foglia */
+            transform-origin: center bottom; /* Ruota dalla base della foglia */
         }
-        .palm-leaf-1 { transform: rotate(-30deg) translate(-10px, -5px); }
-        .palm-leaf-2 { transform: rotate(30deg) translate(10px, -5px); }
-        .palm-leaf-3 { transform: rotate(-60deg) translate(-15px, 5px); }
-        .palm-leaf-4 { transform: rotate(60deg) translate(15px, 5px); }
+        /* Foglie orientate correttamente */
+        .palm-leaf-1 { left: -50px; transform: rotate(-20deg); }
+        .palm-leaf-2 { right: -50px; transform: rotate(20deg); }
+        .palm-leaf-3 { left: -30px; top: -35px; transform: rotate(-60deg); }
+        .palm-leaf-4 { right: -30px; top: -35px; transform: rotate(60deg); }
+        .palm-leaf-5 { left: -10px; top: -45px; transform: rotate(0deg) scaleY(1.2); }
         
-        /* --- ISOLA DEL TESORO (CON VERO BAULE!) --- */
+        /* --- ISOLA DEL TESORO (CON VERO BAULE) --- */
         #treasure-chest-on-island {
             position: absolute;
             width: 70px;
@@ -349,12 +390,13 @@
             background: #8B4513;
             border: 3px solid black;
             border-radius: 5px;
-            bottom: 80px; 
+            bottom: 50px; /* Posizionato bene sull'isola */
             left: 50%;
             transform: translateX(-50%);
             z-index: 6;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
-        #treasure-chest-on-island::before { /* Coperchio */
+        #treasure-chest-on-island::before { /* Coperchio arrotondato */
             content: '';
             position: absolute;
             top: -15px;
@@ -363,31 +405,32 @@
             height: 25px;
             background: #8B4513;
             border: 3px solid black;
-            border-radius: 8px 8px 0 0;
+            border-radius: 20px 20px 0 0; /* Arrotondato */
         }
-        #treasure-chest-on-island::after { /* Dettagli metallici */
+        #treasure-chest-on-island::after { /* Bande metalliche */
             content: '';
             position: absolute;
-            width: 100%;
-            height: 10px;
-            background: #fde047;
-            border-top: 2px solid #f59e0b;
-            border-bottom: 2px solid #f59e0b;
-            top: 15px;
-            left: 0;
+            top: -15px;
+            left: 10px;
+            width: 10px;
+            height: 62px;
+            background: transparent;
+            border-left: 3px solid #FFD700;
+            border-right: 3px solid #FFD700;
         }
+        /* Serratura */
         #treasure-chest-on-island .lock {
             position: absolute;
-            width: 15px;
-            height: 10px;
-            background: #c0c0c0;
+            width: 12px;
+            height: 12px;
+            background: #FFD700;
             border: 2px solid black;
-            border-radius: 3px;
-            top: 20px;
+            top: 5px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 7;
         }
+
 
         /* --- Stili Modali --- */
         .modal-pixel {
@@ -413,14 +456,14 @@
              box-shadow: 2px 2px 0px black;
         }
 
-        /* --- Forziere del Tesoro ANIMATO nel Modale (migliorato) --- */
+        /* --- Forziere del Tesoro ANIMATO nel Modale --- */
         #treasure-chest-modal-inner {
             width: 150px;
             height: 110px;
             position: relative;
             margin: 20px auto 40px;
             perspective: 300px;
-            z-index: 1; 
+            z-index: 1;
         }
         #treasure-chest-modal-base {
             width: 150px;
@@ -434,10 +477,10 @@
         }
         #treasure-chest-modal-lid {
             width: 150px;
-            height: 40px;
+            height: 50px; /* Coperchio più alto */
             background: linear-gradient(to top, #8B4513, #A0522D);
             border: 4px solid black;
-            border-radius: 10px 10px 0 0;
+            border-radius: 40px 40px 0 0; /* Molto arrotondato */
             position: absolute;
             bottom: 86px;
             left: -4px;
@@ -446,84 +489,89 @@
             z-index: 10;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-        #treasure-chest-modal-lid::before { 
+        /* Bande dorate sul coperchio del modale */
+        #treasure-chest-modal-lid::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 8px;
-            background: #fde047;
-            border-top: 2px solid #f59e0b;
-            border-bottom: 2px solid #f59e0b;
-            top: 15px;
-            left: 0;
-        }
-        #treasure-chest-modal-lid::after { 
-            content: '';
-            position: absolute;
+            left: 30px;
+            top: 0;
             width: 15px;
-            height: 10px;
-            background: #c0c0c0;
-            border: 2px solid black;
-            border-radius: 3px;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 11;
+            height: 100%;
+            background: #FFD700;
+            border: 1px solid black;
+            opacity: 0.7;
+        }
+        #treasure-chest-modal-lid::after {
+            content: '';
+            position: absolute;
+            right: 30px;
+            top: 0;
+            width: 15px;
+            height: 100%;
+            background: #FFD700;
+            border: 1px solid black;
+            opacity: 0.7;
         }
 
+        /* Stato "Aperto" del coperchio */
         #treasure-modal.open #treasure-chest-modal-lid {
             transform: rotateX(-140deg);
         }
 
         .coin-pile {
             position: absolute;
-            bottom: 0; 
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 80px;
-            overflow: hidden; 
+            height: 100px; /* Pieno fino all'orlo */
+            overflow: hidden;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.3s 0.3s, transform 0.5s 0.3s ease-out;
         }
+        /* Stato "Visibile" delle monete */
         #treasure-modal.open .coin-pile {
             opacity: 1;
-            transform: translateY(0); 
+            transform: translateY(0);
         }
 
         .coin {
             position: absolute;
-            width: 25px;
-            height: 25px;
-            background: #fde047;
-            border: 2px solid #f59e0b;
+            width: 28px;
+            height: 28px;
+            background: #FFD700; /* Oro vero */
+            border: 2px solid #DAA520;
             border-radius: 50%;
             animation: shimmer 1.5s infinite;
-            box-shadow: 0 0 10px #fde047;
+            box-shadow: 0 0 5px #FFD700;
         }
         @keyframes shimmer {
-            0%, 100% { opacity: 0.7; box-shadow: 0 0 10px #fde047; }
-            50% { opacity: 1; box-shadow: 0 0 20px #fef08a; }
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 15px #FFFF00; }
         }
+        
+        /* Tante monete! */
         .coin:nth-child(1) { bottom: 5px; left: 10px; animation-delay: 0s; }
-        .coin:nth-child(2) { bottom: 15px; left: 30px; animation-delay: -0.5s; }
-        .coin:nth-child(3) { bottom: 8px; left: 55px; animation-delay: -1s; }
-        .coin:nth-child(4) { bottom: 20px; left: 75px; animation-delay: -0.2s; }
-        .coin:nth-child(5) { bottom: 10px; left: 95px; animation-delay: -0.7s; }
-        .coin:nth-child(6) { bottom: 0px; left: 115px; animation-delay: -1.2s; }
-        .coin:nth-child(7) { bottom: 25px; left: 20px; animation-delay: -0.3s; }
-        .coin:nth-child(8) { bottom: 30px; left: 65px; animation-delay: -0.8s; }
-        .coin:nth-child(9) { bottom: 18px; left: 85px; animation-delay: -1.3s; }
-        .coin:nth-child(10) { bottom: 35px; left: 45px; animation-delay: -0.6s; }
-        .coin:nth-child(11) { bottom: 22px; left: 105px; animation-delay: -1.1s; }
-        .coin:nth-child(12) { bottom: 40px; left: 80px; animation-delay: -0.4s; }
+        .coin:nth-child(2) { bottom: 15px; left: 30px; animation-delay: -0.2s; }
+        .coin:nth-child(3) { bottom: 5px; left: 55px; animation-delay: -0.5s; }
+        .coin:nth-child(4) { bottom: 25px; left: 20px; animation-delay: -0.1s; }
+        .coin:nth-child(5) { bottom: 10px; left: 80px; animation-delay: -0.7s; }
+        .coin:nth-child(6) { bottom: 30px; left: 45px; animation-delay: -0.4s; }
+        .coin:nth-child(7) { bottom: 5px; left: 105px; animation-delay: -0.9s; }
+        .coin:nth-child(8) { bottom: 20px; left: 70px; animation-delay: -0.3s; }
+        .coin:nth-child(9) { bottom: 35px; left: 90px; animation-delay: -0.6s; }
+        .coin:nth-child(10) { bottom: 15px; left: 120px; animation-delay: -0.8s; }
+        .coin:nth-child(11) { bottom: 45px; left: 35px; animation-delay: -0.2s; }
+        .coin:nth-child(12) { bottom: 40px; left: 65px; animation-delay: -0.5s; }
+        .coin:nth-child(13) { bottom: 50px; left: 10px; animation-delay: -0.1s; }
+        .coin:nth-child(14) { bottom: 45px; left: 110px; animation-delay: -0.7s; }
 
 
     </style>
 </head>
 <body class="m-0 p-0">
 
-    
+    <!-- ELEMENTI DEL CIELO -->
     <div class="sky-elements">
         <div class="sun"></div>
         <div class="cloud cloud-1"></div>
@@ -540,25 +588,34 @@
         </div>
     </div>
     
-    
+    <!-- HEADER INTEGRATO -->
     <header class="game-header">
         <h1>gDrive Treasure Hunt</h1>
         <p class="font-readable italic">"Stop *searching*. Start *finding*."</p>
     </header>
 
-    
+    <!-- MONDO DI GIOCO -->
     <div class="game-world" id="game-world">
         
+        <!-- GALEONE DI ZALLY -->
         <div id="zally-container" title="This is Zally!">
             <div id="zally-image"></div>
+            
             <div id="ship-hull"></div>
-            <div class="mast">
-                <div class="sail"></div>
+            <div id="deck"></div>
+            <div id="bow"></div>
+            <div id="stern"></div>
+            
+            <div class="mast mast-main">
+                <div class="sail sail-main"></div>
                 <div class="pirate-flag"></div>
+            </div>
+            <div class="mast mast-mizzen">
+                <div class="sail sail-mizzen"></div>
             </div>
         </div>
 
-        
+        <!-- Isola 1 -->
         <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="island-base"></div>
             <div class="island-top">Island 1: FIND</div>
@@ -568,10 +625,11 @@
                 <div class="palm-leaf palm-leaf-2"></div>
                 <div class="palm-leaf palm-leaf-3"></div>
                 <div class="palm-leaf palm-leaf-4"></div>
+                <div class="palm-leaf palm-leaf-5"></div>
             </div>
         </div>
 
-        
+        <!-- Isola 2 -->
         <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="island-base"></div>
             <div class="island-top">Island 2: EXTRACT</div>
@@ -581,10 +639,11 @@
                 <div class="palm-leaf palm-leaf-2"></div>
                 <div class="palm-leaf palm-leaf-3"></div>
                 <div class="palm-leaf palm-leaf-4"></div>
+                <div class="palm-leaf palm-leaf-5"></div>
             </div>
         </div>
         
-        
+        <!-- Isola 3 -->
         <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="island-base"></div>
             <div class="island-top">Island 3: SYNTHESIZE</div>
@@ -594,10 +653,11 @@
                 <div class="palm-leaf palm-leaf-2"></div>
                 <div class="palm-leaf palm-leaf-3"></div>
                 <div class="palm-leaf palm-leaf-4"></div>
+                <div class="palm-leaf palm-leaf-5"></div>
             </div>
         </div>
         
-        
+        <!-- Isola 4 (Tesoro) -->
         <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div class="island-base"></div>
             <div class="island-top">TREASURE ISLAND</div>
@@ -606,7 +666,7 @@
             </div>
         </div>
 
-        
+        <!-- Mare -->
         <div class="absolute bottom-0 left-0 flex flex-row z-0">
             <script>
                 for (let i = 0; i < 38; i++) {
@@ -616,7 +676,7 @@
         </div>
     </div>
 
-    
+    <!-- Modale Sfide -->
     <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden"></div>
     <div id="challenge-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div id="modal-title" class="p-4 text-xl modal-header-pixel"></div>
@@ -641,7 +701,7 @@
         </div>
     </div>
 
-    
+    <!-- Modale Tesoro -->
     <div id="treasure-modal" class="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg z-50 hidden modal-pixel">
         <div class="p-4 text-xl modal-header-pixel text-center">TREASURE UNLOCKED!</div>
         <div class="p-6 text-gray-800 space-y-4 font-readable text-center">
@@ -649,15 +709,15 @@
             <h2 class="text-2xl font-bold text-amber-900">Zally found the treasure!</h2>
             <p class="text-base">Thanks to your powerful prompts, you've mastered the gDrive Hunt!</p>
             
-            
+            <!-- Baule del Tesoro Animato -->
             <div id="treasure-chest-modal-inner">
                 <div id="treasure-chest-modal-lid" class="lid"></div>
                 <div id="treasure-chest-modal-base" class="base">
                     <div class="coin-pile">
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
-                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div> <div class="coin"></div> <div class="coin"></div>
+                        <div class="coin"></div> <div class="coin"></div>
                     </div>
                 </div>
             </div>
@@ -678,7 +738,7 @@
 
 
     <script>
-        // --- Contenuto delle Challenge (Specifico per gDrive) ---
+        // --- Contenuto delle Challenge ---
         const challenges = [
             { 
                 id: 1, 
@@ -716,7 +776,7 @@
         const treasureModal = document.getElementById('treasure-modal');
         const closeTreasureModalBtn = document.getElementById('close-treasure-modal-btn');
         const challengeTriggers = document.querySelectorAll('.challenge-trigger');
-        const treasureChestModal = document.getElementById('treasure-chest-modal-inner'); 
+        const treasureChestModal = document.getElementById('treasure-chest-modal-inner'); /* ID CORRETTO */
         
         const modalTitle = document.getElementById('modal-title');
         const modalConcept = document.getElementById('modal-concept');
@@ -743,10 +803,10 @@
             isModalOpen = true;
             modalOverlay.classList.remove('hidden');
             treasureModal.classList.remove('hidden');
-            
+            // Trigger animazione baule
             setTimeout(() => {
-                treasureModal.classList.add('open'); 
-            }, 100); 
+                treasureModal.classList.add('open'); // Usa la classe 'open' sul modale stesso per attivare il CSS
+            }, 100);
         }
 
         function closeModal() {
@@ -754,8 +814,8 @@
             modalOverlay.classList.add('hidden');
             challengeModal.classList.add('hidden');
             treasureModal.classList.add('hidden');
-            
-            treasureModal.classList.remove('open'); 
+            // Resetta animazione baule
+            treasureModal.classList.remove('open');
         }
 
         challengeTriggers.forEach(trigger => {
