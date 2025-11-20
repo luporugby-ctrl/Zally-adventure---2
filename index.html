@@ -170,7 +170,7 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- IL GALEONE PIRATA (DIMENSIONI AUMENTATE) --- */
+        /* --- IL GALEONE PIRATA (DIMENSIONI AUMENTATE, SFONDO TRASPARENTE) --- */
         #zally-container {
             width: 400px;  /* Aumentato da 300 a 400 */
             height: 400px; /* Aumentato da 300 a 400 */
@@ -179,6 +179,7 @@
             left: 50px;    /* Spostato leggermente a sinistra per compensare la larghezza */
             z-index: 10;
             transition: left 0.1s linear; 
+            /* SFONDO TRASPARENTE (Nessun background-color) */
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
