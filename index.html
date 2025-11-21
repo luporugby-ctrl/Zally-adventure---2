@@ -187,11 +187,11 @@
             pointer-events: none;
         }
 
-        /* --- ELEMENTI SFIDA (Palma come Isola) --- */
+        /* --- ELEMENTI SFIDA (Palme e Tesoro come Isole) --- */
         
         .challenge-wrapper {
             position: absolute;
-            bottom: 40px; /* Posizione sull'acqua */
+            bottom: 40px; /* Posizione sull'acqua, allineata per tutti */
             width: 150px; /* Area cliccabile */
             height: 150px;
             z-index: 5;
@@ -216,54 +216,14 @@
             background-position: center bottom;
         }
         
-        /* BAULE DEL TESORO (Migliorato) */
-        #treasure-chest-on-island {
-            position: absolute;
-            width: 90px; 
-            height: 70px;
-            background: #8B4513; /* Marrone legno */
-            border: 3px solid #2d1a10; /* Bordo scuro */
-            border-radius: 5px;
-            bottom: 0;
-            z-index: 6;
-            box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-        }
-        /* Coperchio */
-        #treasure-chest-on-island::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -3px;
-            width: 90px;
-            height: 35px;
-            background: #8B4513;
-            border: 3px solid #2d1a10;
-            border-radius: 30px 30px 0 0; 
-        }
-        /* Fasce metalliche */
-        #treasure-chest-on-island::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 15px;
-            width: 15px;
-            height: 90px;
-            background: transparent;
-            border-left: 4px solid #FFD700;
-            border-right: 4px solid #FFD700;
-        }
-        /* Serratura */
-        #treasure-chest-on-island .lock {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #FFD700;
-            border: 2px solid #2d1a10;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 7;
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        /* NUOVO BAULE DEL TESORO (IMMAGINE) */
+        #treasure-chest-img {
+            width: 120px;  /* Un po' più grande e importante */
+            height: 120px;
+            background-image: url('treasure.png'); /* TUA NUOVA IMMAGINE */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center bottom;
         }
 
         /* --- MODALI --- */
@@ -436,9 +396,9 @@
             <div class="palm-img"></div>
         </div>
         
-        <!-- SFIDA 4 (Baule come Isola) -->
+        <!-- SFIDA 4 (Baule Immagine come Isola) -->
         <div class="challenge-wrapper challenge-trigger" data-challenge-id="4" style="left: 2100px;">
-            <div id="treasure-chest-on-island"><div class="lock"></div></div>
+            <div id="treasure-chest-img"></div>
         </div>
 
         <!-- MARE -->
