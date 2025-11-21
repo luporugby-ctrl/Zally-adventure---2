@@ -170,15 +170,16 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- IL GALEONE PIRATA --- */
+        /* --- IL GALEONE PIRATA (PERFECT SIZE) --- */
         #zally-container {
-            width: 600px;
-            height: 600px;
+            width: 500px;  /* Dimensione PERFETTA */
+            height: 500px; 
             position: absolute;
-            bottom: -90px; 
-            left: -50px;    
+            bottom: -60px; /* Galleggiamento ottimale */
+            left: 20px;    
             z-index: 10;
             transition: left 0.1s linear; 
+            /* Qui dovrai assicurarti che il nome file corrisponda */
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
@@ -186,103 +187,74 @@
             pointer-events: none;
         }
 
-        /* --- ISOLE --- */
-        .island {
-            width: 180px;
-            height: 90px;
+        /* --- ELEMENTI SFIDA (Solo Palme e Baule) --- */
+        
+        .challenge-wrapper {
             position: absolute;
-            bottom: 64px;
-            cursor: pointer;
-            transition: transform 0.1s ease;
+            bottom: 50px; /* Posizione sull'acqua */
+            width: 150px; /* Area cliccabile */
+            height: 150px;
             z-index: 5;
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; 
+            justify-content: flex-end;
+            transition: transform 0.1s ease;
         }
-        .island:hover { transform: scale(1.03); }
-        
-        .island-base {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #CD853F 0%, #A0522D 100%);
-            border: 4px solid black;
-            border-radius: 50% / 40%;
-            z-index: 1; 
-        }
-        
-        .island-top {
-            position: absolute;
-            top: 0;
-            left: 5px;
-            right: 5px;
-            height: 50px;
-            background: #2dbd2d;
-            border: 4px solid black;
-            border-radius: 50% / 60%;
-            z-index: 2; 
+        .challenge-wrapper:hover {
+            transform: scale(1.05);
         }
 
-        /* --- NUOVE PALME (IMMAGINE) --- */
-        .palm-tree-img {
-            position: absolute;
-            bottom: 35px; /* Sull'erba */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px; /* Larghezza immagine palma */
-            height: 80px; /* Altezza immagine palma */
-            background-image: url('Gemini_Generated_Image_wv2cr3wv2cr3wv2c.jpg'); /* TUA IMMAGINE */
+        /* IMMAGINE PALMA */
+        .palm-img {
+            width: 120px; 
+            height: 120px; 
+            /* Assicurati che questo file esista nella repo */
+            background-image: url('Gemini_Generated_Image_wv2cr3wv2cr3wv2c.jpg'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center bottom;
-            z-index: 5; 
-            /* Se l'immagine ha sfondo bianco, questo aiuta a fonderlo (opzionale) */
-            /* mix-blend-mode: multiply; */ 
         }
         
-        /* --- ISOLA DEL TESORO --- */
+        /* BAULE DEL TESORO */
         #treasure-chest-on-island {
             position: absolute;
-            width: 70px;
-            height: 50px;
+            width: 80px; /* Un po' più grande */
+            height: 60px;
             background: #8B4513;
             border: 3px solid black;
             border-radius: 5px;
-            bottom: 50px; 
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
             z-index: 6;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
         #treasure-chest-on-island::before {
             content: '';
             position: absolute;
-            top: -15px;
+            top: -18px;
             left: -3px;
-            width: 70px;
-            height: 25px;
+            width: 80px;
+            height: 30px;
             background: #8B4513;
             border: 3px solid black;
-            border-radius: 20px 20px 0 0; 
+            border-radius: 25px 25px 0 0; 
         }
         #treasure-chest-on-island::after {
             content: '';
             position: absolute;
-            top: -15px;
-            left: 10px;
-            width: 10px;
-            height: 62px;
+            top: -18px;
+            left: 12px;
+            width: 12px;
+            height: 75px;
             background: transparent;
             border-left: 3px solid #FFD700;
             border-right: 3px solid #FFD700;
         }
         #treasure-chest-on-island .lock {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             background: #FFD700;
             border: 2px solid black;
             top: 5px;
@@ -443,37 +415,26 @@
     <!-- GIOCO -->
     <div class="game-world" id="game-world">
         
-        <!-- GALEONE CONTAINER (EXTRA LARGE) -->
+        <!-- GALEONE CONTAINER (PERFECT SIZE) -->
         <div id="zally-container" title="This is Zally!"></div>
 
-        <!-- ISOLA 1 -->
-        <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
-            <div class="island-base"></div>
-            <div class="island-top"></div>
-            <!-- PALMA IMMAGINE -->
-            <div class="palm-tree-img"></div>
+        <!-- SFIDA 1 (Solo Palma Immagine) -->
+        <div class="challenge-wrapper challenge-trigger" data-challenge-id="1" style="left: 400px;">
+            <div class="palm-img"></div>
         </div>
 
-        <!-- ISOLA 2 -->
-        <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
-            <div class="island-base"></div>
-            <div class="island-top"></div>
-            <!-- PALMA IMMAGINE -->
-            <div class="palm-tree-img"></div>
+        <!-- SFIDA 2 (Solo Palma Immagine) -->
+        <div class="challenge-wrapper challenge-trigger" data-challenge-id="2" style="left: 900px;">
+            <div class="palm-img"></div>
         </div>
         
-        <!-- ISOLA 3 -->
-        <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
-            <div class="island-base"></div>
-            <div class="island-top"></div>
-            <!-- PALMA IMMAGINE -->
-            <div class="palm-tree-img"></div>
+        <!-- SFIDA 3 (Solo Palma Immagine) -->
+        <div class="challenge-wrapper challenge-trigger" data-challenge-id="3" style="left: 1500px;">
+            <div class="palm-img"></div>
         </div>
         
-        <!-- ISOLA 4 -->
-        <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
-            <div class="island-base"></div>
-            <div class="island-top"></div>
+        <!-- SFIDA 4 (Solo Baule del Tesoro) -->
+        <div class="challenge-wrapper challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div id="treasure-chest-on-island"><div class="lock"></div></div>
         </div>
 
@@ -525,9 +486,9 @@
 
     <script>
         const challenges = [
-            { id: 1, title: "Island 1: FIND THE PLAN", concept: "Lost in a sea of files. You need to find the *right* document.", objective: "Find the main project document for the 'Supplier Returns' initiative.", badPrompt: "'supplier returns'", goodPrompt: "'Find the Project Plan for Supplier Returns Process Improvement'", takeaway: "Gemini understands concepts, not just keywords." },
-            { id: 2, title: "Island 2: EXTRACT THE OWNER", concept: "Found the island, but need info *without opening the file*.", objective: "Who is the owner of this initiative?", badPrompt: "*[Opens file, wastes time]*", goodPrompt: "Right-click > Gemini summary, or ask: 'Who is the owner?'", takeaway: "Use Gemini's contextual summary to get answers *on the fly*." },
-            { id: 3, title: "Island 3: SYNTHESIZE UPDATES", concept: "Need one answer from three different islands.", objective: "What are the updates and deadlines?", badPrompt: "*[Copies notes from 3 files]*", goodPrompt: "'Summarize key updates and next deadlines from the Supplier Returns initiative'", takeaway: "Gemini can read *multiple* documents at once." }
+            { id: 1, title: "Challenge 1: FIND THE PLAN", concept: "Lost in a sea of files. You need to find the *right* document.", objective: "Find the main project document for the 'Supplier Returns' initiative.", badPrompt: "'supplier returns'", goodPrompt: "'Find the Project Plan for Supplier Returns Process Improvement'", takeaway: "Gemini understands concepts, not just keywords." },
+            { id: 2, title: "Challenge 2: EXTRACT THE OWNER", concept: "Found the island, but need info *without opening the file*.", objective: "Who is the owner of this initiative?", badPrompt: "*[Opens file, wastes time]*", goodPrompt: "Right-click > Gemini summary, or ask: 'Who is the owner?'", takeaway: "Use Gemini's contextual summary to get answers *on the fly*." },
+            { id: 3, title: "Challenge 3: SYNTHESIZE UPDATES", concept: "Need one answer from three different islands.", objective: "What are the updates and deadlines?", badPrompt: "*[Copies notes from 3 files]*", goodPrompt: "'Summarize key updates and next deadlines from the Supplier Returns initiative'", takeaway: "Gemini can read *multiple* documents at once." }
         ];
 
         const modalOverlay = document.getElementById('modal-overlay');
