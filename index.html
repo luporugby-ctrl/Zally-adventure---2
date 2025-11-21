@@ -175,8 +175,9 @@
             width: 500px;
             height: 500px;
             position: absolute;
-            bottom: -60px; 
-            left: 20px;    
+            /* RIALZATO: 30px dal fondo (galleggia SULL'ACQUA) */
+            bottom: 30px; 
+            left: -20px;    
             z-index: 10;
             transition: left 0.1s linear; 
             background-image: url('pirate-galleon.png'); 
@@ -207,59 +208,62 @@
 
         /* IMMAGINE PALMA (ISOLA) */
         .palm-img {
-            width: 150px;  /* Dimensione Isola-Palma */
+            width: 150px;  
             height: 150px; 
-            /* Usa la tua immagine PNG caricata */
             background-image: url('Gemini_Generated_Image_wv2cr3wv2cr3wv2c.png'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center bottom;
         }
         
-        /* BAULE DEL TESORO */
+        /* BAULE DEL TESORO (Migliorato) */
         #treasure-chest-on-island {
             position: absolute;
-            width: 80px; 
-            height: 60px;
-            background: #8B4513;
-            border: 3px solid black;
+            width: 90px; 
+            height: 70px;
+            background: #8B4513; /* Marrone legno */
+            border: 3px solid #2d1a10; /* Bordo scuro */
             border-radius: 5px;
             bottom: 0;
             z-index: 6;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
         }
+        /* Coperchio */
         #treasure-chest-on-island::before {
             content: '';
             position: absolute;
-            top: -18px;
+            top: -20px;
             left: -3px;
-            width: 80px;
-            height: 30px;
+            width: 90px;
+            height: 35px;
             background: #8B4513;
-            border: 3px solid black;
-            border-radius: 25px 25px 0 0; 
+            border: 3px solid #2d1a10;
+            border-radius: 30px 30px 0 0; 
         }
+        /* Fasce metalliche */
         #treasure-chest-on-island::after {
             content: '';
             position: absolute;
-            top: -18px;
-            left: 12px;
-            width: 12px;
-            height: 75px;
+            top: -20px;
+            left: 15px;
+            width: 15px;
+            height: 90px;
             background: transparent;
-            border-left: 3px solid #FFD700;
-            border-right: 3px solid #FFD700;
+            border-left: 4px solid #FFD700;
+            border-right: 4px solid #FFD700;
         }
+        /* Serratura */
         #treasure-chest-on-island .lock {
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             background: #FFD700;
-            border: 2px solid black;
-            top: 5px;
+            border: 2px solid #2d1a10;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 7;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         /* --- MODALI --- */
@@ -414,25 +418,25 @@
     <!-- GIOCO -->
     <div class="game-world" id="game-world">
         
-        <!-- GALEONE CONTAINER (PERFECT SIZE) -->
+        <!-- GALEONE CONTAINER -->
         <div id="zally-container" title="This is Zally!"></div>
 
-        <!-- SFIDA 1 (Solo Palma Immagine - Funge da Isola) -->
+        <!-- SFIDA 1 (Palma come Isola) -->
         <div class="challenge-wrapper challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="palm-img"></div>
         </div>
 
-        <!-- SFIDA 2 (Solo Palma Immagine - Funge da Isola) -->
+        <!-- SFIDA 2 (Palma come Isola) -->
         <div class="challenge-wrapper challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="palm-img"></div>
         </div>
         
-        <!-- SFIDA 3 (Solo Palma Immagine - Funge da Isola) -->
+        <!-- SFIDA 3 (Palma come Isola) -->
         <div class="challenge-wrapper challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="palm-img"></div>
         </div>
         
-        <!-- SFIDA 4 (Solo Baule del Tesoro) -->
+        <!-- SFIDA 4 (Baule come Isola) -->
         <div class="challenge-wrapper challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div id="treasure-chest-on-island"><div class="lock"></div></div>
         </div>
