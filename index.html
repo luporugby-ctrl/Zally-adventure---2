@@ -170,21 +170,20 @@
             100% { transform: translateX(0px); }
         }
 
-        /* --- IL GALEONE PIRATA (FIX POSIZIONE) --- */
+        /* --- IL GALEONE PIRATA (EXTRA LARGE SIZE) --- */
         #zally-container {
-            width: 400px;
-            height: 400px;
+            width: 600px;  /* Aumentato a 600px */
+            height: 600px; /* Aumentato a 600px */
             position: absolute;
-            /* ALZATO: bottom positivo per farlo galleggiare, non annegare */
-            bottom: 20px; 
-            left: 50px;
+            /* Regolato per le nuove dimensioni: più è grande, più deve scendere per sembrare in acqua */
+            bottom: -90px; 
+            left: -50px;    /* Spostato a sinistra per centrare meglio l'inizio */
             z-index: 10;
             transition: left 0.1s linear; 
             background-image: url('pirate-galleon.png'); 
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center bottom;
-            background-color: transparent; /* Forza trasparenza CSS */
+            background-position: center bottom; 
             pointer-events: none;
         }
 
@@ -197,15 +196,26 @@
             cursor: pointer;
             transition: transform 0.1s ease;
             z-index: 5;
+            /* Flexbox per centrare i contenuti */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end; /* Allinea tutto in basso */
         }
         .island:hover { transform: scale(1.03); }
+        
         .island-base {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom, #CD853F 0%, #A0522D 100%);
             border: 4px solid black;
             border-radius: 50% / 40%;
+            z-index: 1; 
         }
+        
         .island-top {
             position: absolute;
             top: 0;
@@ -215,25 +225,16 @@
             background: #2dbd2d;
             border: 4px solid black;
             border-radius: 50% / 60%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            text-align: center;
-            line-height: 1.2;
-            font-size: 12px;
-            color: white;
-            text-shadow: 2px 2px 0px black;
-            z-index: 2;
+            z-index: 2; 
         }
-        
+
         /* --- PALME --- */
         .palm-tree {
             position: absolute;
             bottom: 40px; 
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1; 
+            z-index: 5; 
         }
         .palm-trunk {
             width: 10px;
@@ -458,33 +459,34 @@
     <!-- GIOCO -->
     <div class="game-world" id="game-world">
         
-        <!-- GALEONE CONTAINER -->
-        <div id="zally-container" title="This is Zally!">
-            <!-- (Vuoto perché l'immagine è nel background CSS) -->
-        </div>
+        <!-- GALEONE CONTAINER (EXTRA LARGE) -->
+        <div id="zally-container" title="This is Zally!"></div>
 
-        <!-- ISOLE -->
+        <!-- ISOLA 1 -->
         <div class="island challenge-trigger" data-challenge-id="1" style="left: 400px;">
             <div class="island-base"></div>
-            <div class="island-top">Island 1: FIND</div>
+            <div class="island-top"></div>
             <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
 
+        <!-- ISOLA 2 -->
         <div class="island challenge-trigger" data-challenge-id="2" style="left: 900px;">
             <div class="island-base"></div>
-            <div class="island-top">Island 2: EXTRACT</div>
+            <div class="island-top"></div>
             <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
         
+        <!-- ISOLA 3 -->
         <div class="island challenge-trigger" data-challenge-id="3" style="left: 1500px;">
             <div class="island-base"></div>
-            <div class="island-top">Island 3: SYNTHESIZE</div>
+            <div class="island-top"></div>
             <div class="palm-tree"><div class="palm-trunk"></div><div class="palm-leaf palm-leaf-1"></div><div class="palm-leaf palm-leaf-2"></div><div class="palm-leaf palm-leaf-3"></div><div class="palm-leaf palm-leaf-4"></div><div class="palm-leaf palm-leaf-5"></div></div>
         </div>
         
+        <!-- ISOLA 4 -->
         <div id="treasure-island" class="island challenge-trigger" data-challenge-id="4" style="left: 2100px;">
             <div class="island-base"></div>
-            <div class="island-top">TREASURE ISLAND</div>
+            <div class="island-top"></div>
             <div id="treasure-chest-on-island"><div class="lock"></div></div>
         </div>
 
